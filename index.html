@@ -3,73 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasindu TV - Live & Videos</title>
+    <title>Hasindu TV - Welcome</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-950 text-white font-sans min-h-screen">
 
-    <!-- Navbar -->
-    <nav class="bg-gray-900 border-b border-gray-800 px-6 py-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
-        <div class="flex items-center space-x-3">
-            <div class="bg-red-600 text-white font-bold px-3 py-1 rounded-lg text-xl tracking-wider shadow-lg shadow-red-600/30">
-                HTV
-            </div>
-            <span class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">
-                Hasindu TV
-            </span>
-        </div>
-        <div class="flex items-center space-x-2 bg-red-600/20 border border-red-500/30 px-3 py-1.5 rounded-full">
-            <span class="w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
-            <span class="text-red-400 text-sm font-semibold uppercase tracking-wider">LIVE ON AIR</span>
-        </div>
-    </nav>
-
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Welcome Overlay Screen -->
+    <div id="welcome-screen" class="fixed inset-0 bg-gray-950 z-50 flex flex-col items-center justify-center text-center px-4 transition-opacity duration-500">
+        <!-- Welcome Heading -->
+        <h1 class="text-4xl md:text-6xl font-black mb-8 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 drop-shadow-[0_5px_15px_rgba(234,179,8,0.3)] animate-pulse">
+            Welcome Hasindu TV
+        </h1>
         
-        <!-- Left & Center: Live Stream Player (2 Columns) -->
-        <div class="lg:col-span-2 space-y-6">
-            <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-                <div class="relative aspect-video bg-black flex items-center justify-center">
-                    <!-- මෙතැනට ඔයාගේ YouTube Live / Stream Embed Link එක දාන්න -->
-                    <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- White Box with Go to Home Page Button -->
+        <div class="bg-white p-6 rounded-2xl shadow-2xl max-w-sm w-full">
+            <button onclick="enterSite()" class="w-full bg-black text-white font-bold py-3.5 px-6 rounded-xl hover:bg-gray-800 transition duration-300 text-lg shadow-md cursor-pointer flex items-center justify-center gap-2">
+                <span>Go to Home Page</span>
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Website Content (Hidden initially until button is clicked) -->
+    <div id="main-content" class="hidden min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <nav class="bg-gray-900 border-b border-gray-800 px-6 py-4 flex justify-between items-center sticky top-0 z-40 shadow-md">
+            <div class="flex items-center space-x-3">
+                <div class="bg-red-600 text-white font-bold px-3 py-1 rounded-lg text-xl tracking-wider shadow-lg shadow-red-600/30">
+                    HTV
                 </div>
-                <div class="p-6">
-                    <h1 class="text-2xl font-bold mb-2">Hasindu TV Official Live Broadcast</h1>
-                    <p class="text-gray-400 text-sm">Welcome to the official streaming channel of Hasindu TV. Enjoy the live broadcast and recent videos!</p>
+                <span class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">
+                    Hasindu TV
+                </span>
+            </div>
+            <div class="flex items-center space-x-2 bg-red-600/20 border border-red-500/30 px-3 py-1.5 rounded-full">
+                <span class="w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
+                <span class="text-red-400 text-sm font-semibold uppercase tracking-wider">LIVE ON AIR</span>
+            </div>
+        </nav>
+
+        <!-- Main Container -->
+        <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8 flex-grow w-full">
+            
+            <!-- Left & Center: Live Stream Player (2 Columns) -->
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="relative aspect-video bg-black flex items-center justify-center">
+                        <!-- YouTube Live Stream Embed Link -->
+                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-2">Hasindu TV Official Live Broadcast</h2>
+                        <p class="text-gray-400 text-sm">Welcome to the official streaming channel of Hasindu TV. Enjoy the live broadcast and recent videos!</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Right Column: Video Gallery / Playlist -->
-        <div class="space-y-6">
-            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl">
-                <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-photo-film text-red-500"></i> Recent Broadcasts
-                </h2>
-                <div class="space-y-4">
-                    <!-- Video Item 1 -->
-                    <div class="bg-gray-950 border border-gray-800/80 rounded-xl p-3 flex gap-3 items-center hover:border-red-500/50 transition cursor-pointer">
-                        <div class="w-24 h-16 bg-gray-800 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
-                            <i class="fa-solid fa-play text-red-500"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-sm line-clamp-1">Hasindu TV - Stream Highlights #1</h3>
-                            <span class="text-xs text-gray-500">Official Upload</span>
+            <!-- Right Column: Video Gallery / Playlist -->
+            <div class="space-y-6">
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-photo-film text-red-500"></i> Recent Broadcasts
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Video Item 1 -->
+                        <div class="bg-gray-950 border border-gray-800/80 rounded-xl p-3 flex gap-3 items-center hover:border-red-500/50 transition cursor-pointer">
+                            <div class="w-24 h-16 bg-gray-800 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
+                                <i class="fa-solid fa-play text-red-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm line-clamp-1">Hasindu TV - Stream Highlights #1</h4>
+                                <span class="text-xs text-gray-500">Official Upload</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </main>
+        </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-900 mt-12">
-        &copy; 2026 Hasindu TV. All rights reserved.
-    </footer>
+        <!-- Footer -->
+        <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-900 mt-12">
+            &copy; 2026 Hasindu TV. All rights reserved.
+        </footer>
+    </div>
+
+    <!-- JavaScript to handle button click -->
+    <script>
+        function enterSite() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // Fade out welcome screen
+            welcomeScreen.style.opacity = '0';
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                mainContent.classList.remove('hidden');
+            }, 500);
+        }
+    </script>
 
 </body>
 </html>

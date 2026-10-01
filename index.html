@@ -51,10 +51,9 @@
 
     <!-- Main Website Content -->
     <div id="main-content" class="hidden min-h-screen flex flex-col">
-        <!-- Navbar with Horizontal Options (Live Stream, News, Teledrama) -->
+        <!-- Navbar -->
         <nav class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 px-6 py-4 sticky top-0 z-40 shadow-lg">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                <!-- Logo & Title -->
                 <div class="flex items-center space-x-3">
                     <div class="logo-container" id="nav-logo-frame">
                         <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Logo">
@@ -64,14 +63,12 @@
                     </span>
                 </div>
 
-                <!-- Horizontal Navigation Options -->
                 <div class="flex items-center space-x-6 text-sm font-medium">
                     <button onclick="switchTab('live')" id="btn-live" class="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-video"></i> Live Stream</button>
                     <button onclick="switchTab('news')" id="btn-news" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-newspaper"></i> News</button>
                     <button onclick="switchTab('teledrama')" id="btn-teledrama" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-film"></i> Teledrama</button>
                 </div>
 
-                <!-- Live Status (Red Button) -->
                 <div class="flex items-center space-x-4">
                     <div class="flex items-center space-x-2 bg-red-500/10 border border-red-500/30 px-3 py-1.5 rounded-full">
                         <span class="w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
@@ -84,20 +81,38 @@
         <!-- Main Container Sections -->
         <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
             
-            <!-- SECTION 1: LIVE STREAM -->
-            <div id="section-live" class="max-w-4xl mx-auto space-y-6">
-                <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
-                    <div class="relative aspect-video bg-black flex items-center justify-center">
-                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- SECTION 1: LIVE STREAM WITH RIGHT SIDE BOX -->
+            <div id="section-live" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left: Live Video Player -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="relative aspect-video bg-black flex items-center justify-center">
+                            <iframe class="w-full h-full absolute inset-0" src="url?id=0" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
+                            <p class="text-gray-400 text-sm">Welcome to the live broadcast of Hasindu TV.</p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
-                        <p class="text-gray-400 text-sm">Welcome to the live broadcast of Hasindu TV.</p>
+                </div>
+
+                <!-- Right: Admin Uploaded Mini Feed (Only Admin can add content here via Ctrl + M) -->
+                <div class="space-y-6">
+                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[480px]">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-cyan-400 border-b border-gray-800 pb-2">
+                            <i class="fa-solid fa-star"></i> Live Updates & Photos
+                        </h3>
+                        <!-- Stream Side Feed Container -->
+                        <div id="stream-side-container" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
+                            <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/50 text-center text-gray-500">
+                                No updates posted yet.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SECTION 2: NEWS (Admin Managed) -->
+            <!-- SECTION 2: NEWS -->
             <div id="section-news" class="hidden space-y-6">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
                     <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> Latest News</h2>
@@ -107,7 +122,7 @@
                 </div>
             </div>
 
-            <!-- SECTION 3: TELEDRAMA (Admin Managed) -->
+            <!-- SECTION 3: TELEDRAMA -->
             <div id="section-teledrama" class="hidden space-y-6">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
                     <h2 class="text-2xl font-bold text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-film"></i> Teledramas & Episodes</h2>
@@ -125,7 +140,7 @@
         </footer>
     </div>
 
-    <!-- ADMIN LOGIN & UPLOAD MODAL (Hidden by default, opens via Ctrl + M shortcut) -->
+    <!-- ADMIN LOGIN & UPLOAD MODAL (Opens via Ctrl + M) -->
     <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl max-w-md w-full shadow-2xl relative">
             <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
@@ -142,20 +157,21 @@
                 <div>
                     <label class="text-xs text-gray-400 block mb-1">Select Section</label>
                     <select id="upload-section" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
-                        <option value="news">News</option>
-                        <option value="teledrama">Teledrama</option>
+                        <option value="stream-side">Live Stream Right Box (Mini Update)</option>
+                        <option value="news">News Section</option>
+                        <option value="teledrama">Teledrama Section</option>
                     </select>
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 block mb-1">Title</label>
-                    <input type="text" id="upload-title" placeholder="Video / Photo Title" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    <input type="text" id="upload-title" placeholder="Post Title" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 block mb-1">Image / Photo URL</label>
                     <input type="text" id="upload-img" placeholder="Paste Image Link" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                 </div>
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">Video Link (YouTube Embed or MP4)</label>
+                    <label class="text-xs text-gray-400 block mb-1">Video Link (Optional)</label>
                     <input type="text" id="upload-video" placeholder="Paste Video Link" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                 </div>
                 <button onclick="savePost()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Publish Post</button>
@@ -189,7 +205,7 @@
             document.getElementById('btn-' + tab).className = "text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer font-bold";
         }
 
-        // Secret Keyboard Shortcut: Press 'Ctrl + M' to open Admin Panel
+        // Shortcut: Ctrl + M for Admin Panel
         document.addEventListener('keydown', function(event) {
             if (event.ctrlKey && event.key.toLowerCase() === 'm') {
                 event.preventDefault();
@@ -212,7 +228,6 @@
             }
         }
 
-        // Save and Load Posts via LocalStorage
         function savePost() {
             const section = document.getElementById('upload-section').value;
             const title = document.getElementById('upload-title').value;
@@ -235,6 +250,7 @@
 
         function loadPosts() {
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+            let sideHTML = '';
             let newsHTML = '';
             let teleHTML = '';
 
@@ -248,10 +264,21 @@
                         </div>
                     </div>
                 `;
+
+                let sideCard = `
+                    <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80 space-y-2">
+                        ${p.img ? `<img src="${p.img}" class="w-full h-32 object-cover rounded-lg" alt="Side Image">` : ''}
+                        <h4 class="font-bold text-sm text-white">${p.title}</h4>
+                        ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> Watch</a>` : ''}
+                    </div>
+                `;
+
+                if(p.section === 'stream-side') sideHTML += sideCard;
                 if(p.section === 'news') newsHTML += card;
                 if(p.section === 'teledrama') teleHTML += card;
             });
 
+            if(sideHTML) document.getElementById('stream-side-container').innerHTML = sideHTML;
             if(newsHTML) document.getElementById('news-container').innerHTML = newsHTML;
             if(teleHTML) document.getElementById('teledrama-container').innerHTML = teleHTML;
         }

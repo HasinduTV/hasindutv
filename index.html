@@ -8,13 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Profile Logo & Welcome Screen Fireworks Styles */
+        /* Pro Navbar Profile Logo Styles */
         .logo-container {
             position: relative;
             padding: 4px;
-            background: linear-gradient(135deg, #ff007f, #7928ca, #00dfd8);
+            background: linear-gradient(135deg, #00f2fe, #4facfe, #8a2be2);
             border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
             display: inline-block;
         }
 
@@ -32,9 +32,9 @@
         .welcome-logo-container {
             position: relative;
             padding: 8px;
-            background: linear-gradient(135deg, #ff007f, #7928ca, #00dfd8);
+            background: linear-gradient(135deg, #00f2fe, #7f00ff, #ff007f);
             border-radius: 24px;
-            box-shadow: 0 0 35px rgba(255, 0, 127, 0.6);
+            box-shadow: 0 0 40px rgba(127, 0, 255, 0.6);
             display: inline-block;
         }
 
@@ -70,25 +70,25 @@
         }
     </style>
 </head>
-<body class="bg-gray-950 text-white font-sans min-h-screen">
+<body class="bg-[#0b0f19] text-white font-sans min-h-screen">
 
-    <!-- Welcome Overlay Screen -->
-    <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center px-4 bg-gradient-to-br from-blue-900 via-sky-950 to-slate-950 transition-opacity duration-500">
+    <!-- Welcome Overlay Screen with Dynamic Cyan-Indigo Gradient -->
+    <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center px-4 bg-gradient-to-br from-indigo-950 via-[#0f0c1b] to-slate-950 transition-opacity duration-500">
         <div class="relative z-20 flex flex-col items-center max-w-2xl">
             
-            <!-- Welcome Screen Profile Photo with Fireworks Border -->
+            <!-- Welcome Screen Profile Photo with Neon Border -->
             <div class="welcome-logo-container mb-6" id="welcome-logo-frame">
                 <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Welcome Photo">
             </div>
 
-            <!-- Welcome Heading -->
-            <h1 class="text-4xl md:text-6xl font-black mb-8 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 drop-shadow-[0_5px_15px_rgba(234,179,8,0.5)] animate-pulse">
+            <!-- Welcome Heading with Vibrant Cyan & Gold Tone -->
+            <h1 class="text-4xl md:text-6xl font-black mb-8 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 drop-shadow-[0_5px_15px_rgba(56,189,248,0.4)] animate-pulse">
                 Welcome Hasindu TV
             </h1>
             
-            <!-- White Box with Go to Home Page Button -->
-            <div class="bg-white p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-sky-400/50">
-                <button onclick="enterSite()" class="w-full bg-black text-white font-bold py-3.5 px-6 rounded-xl hover:bg-gray-800 transition duration-300 text-lg shadow-md cursor-pointer flex items-center justify-center gap-2">
+            <!-- Sleek Glassmorphism Box with Button -->
+            <div class="bg-gray-900/80 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-cyan-500/30">
+                <button onclick="enterSite()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3.5 px-6 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition duration-300 text-lg shadow-[0_0_20px_rgba(6,182,212,0.4)] cursor-pointer flex items-center justify-center gap-2">
                     <span>Go to Home Page</span>
                     <i class="fa-solid fa-arrow-right text-sm"></i>
                 </button>
@@ -96,22 +96,22 @@
         </div>
     </div>
 
-    <!-- Main Website Content (Hidden initially until button is clicked) -->
+    <!-- Main Website Content (Hidden initially) -->
     <div id="main-content" class="hidden min-h-screen flex flex-col">
         <!-- Navbar -->
-        <nav class="bg-gray-900 border-b border-gray-800 px-6 py-4 flex justify-between items-center sticky top-0 z-40 shadow-md">
+        <nav class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 px-6 py-4 flex justify-between items-center sticky top-0 z-40 shadow-lg">
             <div class="flex items-center space-x-3">
                 <!-- Navbar Profile Logo -->
                 <div class="logo-container" id="nav-logo-frame">
                     <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Logo">
                 </div>
-                <span class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">
+                <span class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">
                     Hasindu TV
                 </span>
             </div>
-            <div class="flex items-center space-x-2 bg-red-600/20 border border-red-500/30 px-3 py-1.5 rounded-full">
-                <span class="w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
-                <span class="text-red-400 text-sm font-semibold uppercase tracking-wider">LIVE ON AIR</span>
+            <div class="flex items-center space-x-2 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1.5 rounded-full">
+                <span class="w-3 h-3 bg-cyan-400 rounded-full animate-ping"></span>
+                <span class="text-cyan-300 text-sm font-semibold uppercase tracking-wider">LIVE ON AIR</span>
             </div>
         </nav>
 
@@ -120,13 +120,13 @@
             
             <!-- Left & Center: Live Stream Player (2 Columns) -->
             <div class="lg:col-span-2 space-y-6">
-                <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
                     <div class="relative aspect-video bg-black flex items-center justify-center">
                         <!-- YouTube Live Stream Embed Link -->
-                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="w-full h-full absolute inset-0" src="url?id=0" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="p-6">
-                        <h2 class="text-2xl font-bold mb-2">Hasindu TV Official Live Broadcast</h2>
+                        <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
                         <p class="text-gray-400 text-sm">Welcome to the official streaming channel of Hasindu TV. Enjoy the live broadcast and recent videos!</p>
                     </div>
                 </div>
@@ -134,15 +134,15 @@
 
             <!-- Right Column: Video Gallery / Playlist -->
             <div class="space-y-6">
-                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-photo-film text-red-500"></i> Recent Broadcasts
+                <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-cyan-400">
+                        <i class="fa-solid fa-photo-film"></i> Recent Broadcasts
                     </h3>
                     <div class="space-y-4">
                         <!-- Video Item 1 -->
-                        <div class="bg-gray-950 border border-gray-800/80 rounded-xl p-3 flex gap-3 items-center hover:border-red-500/50 transition cursor-pointer">
-                            <div class="w-24 h-16 bg-gray-800 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
-                                <i class="fa-solid fa-play text-red-500"></i>
+                        <div class="bg-gray-950 border border-gray-800/60 rounded-xl p-3 flex gap-3 items-center hover:border-cyan-500/50 transition cursor-pointer">
+                            <div class="w-24 h-16 bg-gray-900 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
+                                <i class="fa-solid fa-play text-cyan-400"></i>
                             </div>
                             <div>
                                 <h4 class="font-semibold text-sm">Hasindu TV - Stream Highlights #1</h4>
@@ -174,7 +174,7 @@
             }, 500);
         }
 
-        // Generic Firework Creator Function
+        // Generic Firework Creator Function with Neon Colors
         function createFirework(frameElement, particleCount, distanceMax) {
             if (!frameElement) return;
             const rect = frameElement.getBoundingClientRect();
@@ -190,7 +190,7 @@
                 const particle = document.createElement('div');
                 particle.classList.add('firework');
                 
-                const colors = ['#ff0055', '#ffcc00', '#00ffcc', '#ff66ff', '#ffffff'];
+                const colors = ['#00f2fe', '#4facfe', '#7f00ff', '#ff007f', '#ffffff'];
                 particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 particle.style.left = startX + 'px';
                 particle.style.top = startY + 'px';
@@ -208,7 +208,7 @@
         // Welcome Screen Logo Fireworks
         const welcomeLogoFrame = document.getElementById('welcome-logo-frame');
         setInterval(() => {
-            createFirework(welcomeLogoFrame, 12, 50);
+            createFirework(welcomeLogoFrame, 14, 60);
         }, 500);
 
         // Navbar Logo Fireworks

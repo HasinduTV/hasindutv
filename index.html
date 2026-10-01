@@ -71,11 +71,11 @@
                     <button onclick="switchTab('teledrama')" id="btn-teledrama" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-film"></i> Teledrama</button>
                 </div>
 
-                <!-- Live Status (Admin Button removed from view) -->
+                <!-- Live Status (Red Button) -->
                 <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-2 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1.5 rounded-full">
-                        <span class="w-3 h-3 bg-cyan-400 rounded-full animate-ping"></span>
-                        <span class="text-cyan-300 text-sm font-semibold uppercase tracking-wider">LIVE</span>
+                    <div class="flex items-center space-x-2 bg-red-500/10 border border-red-500/30 px-3 py-1.5 rounded-full">
+                        <span class="w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
+                        <span class="text-red-400 text-sm font-semibold uppercase tracking-wider">LIVE</span>
                     </div>
                 </div>
             </div>
@@ -85,35 +85,14 @@
         <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
             
             <!-- SECTION 1: LIVE STREAM -->
-            <div id="section-live" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
-                        <div class="relative aspect-video bg-black flex items-center justify-center">
-                            <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-6">
-                            <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
-                            <p class="text-gray-400 text-sm">Welcome to the live broadcast of Hasindu TV.</p>
-                        </div>
+            <div id="section-live" class="max-w-4xl mx-auto space-y-6">
+                <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="relative aspect-video bg-black flex items-center justify-center">
+                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                </div>
-
-                <!-- Chat Box -->
-                <div class="space-y-6">
-                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[400px]">
-                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-cyan-400 border-b border-gray-800 pb-2">
-                            <i class="fa-solid fa-comments"></i> Stream Chat
-                        </h3>
-                        <div class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
-                            <div class="bg-gray-950 p-2.5 rounded-xl border border-gray-800/50">
-                                <span class="text-cyan-400 font-semibold block text-xs">Hasindu TV (Host)</span>
-                                Welcome to the stream! 🔥
-                            </div>
-                        </div>
-                        <div class="mt-3 flex gap-2">
-                            <input type="text" placeholder="Type a message..." class="bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm w-full focus:outline-none focus:border-cyan-500 text-white">
-                            <button class="bg-cyan-500 hover:bg-cyan-600 text-black font-bold px-4 rounded-xl text-sm transition"><i class="fa-solid fa-paper-plane"></i></button>
-                        </div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
+                        <p class="text-gray-400 text-sm">Welcome to the live broadcast of Hasindu TV.</p>
                     </div>
                 </div>
             </div>
@@ -225,7 +204,6 @@
 
         function verifyAdmin() {
             const pass = document.getElementById('admin-pass').value;
-            // පාස්වර්ඩ් එක 'hasindu123' වේ (අවශ්‍ය නම් මෙතනින් වෙනස් කරගත හැක)
             if (pass === 'hasindu123') {
                 document.getElementById('admin-login-box').classList.add('hidden');
                 document.getElementById('admin-panel-box').classList.remove('hidden');

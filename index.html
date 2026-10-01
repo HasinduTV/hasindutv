@@ -3,90 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasindu TV - Welcome</title>
+    <title>Hasindu TV - Official Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Pro Navbar Profile Logo Styles */
         .logo-container {
-            position: relative;
-            padding: 4px;
-            background: linear-gradient(135deg, #00f2fe, #4facfe, #8a2be2);
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
-            display: inline-block;
+            position: relative; padding: 4px; background: linear-gradient(135deg, #00f2fe, #4facfe, #8a2be2); border-radius: 12px; box-shadow: 0 0 20px rgba(0, 242, 254, 0.5); display: inline-block;
         }
-
         .logo-container img {
-            display: block;
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 8px;
-            position: relative;
-            z-index: 2;
+            display: block; width: 40px; height: 40px; object-fit: cover; border-radius: 8px; position: relative; z-index: 2;
         }
-
-        /* Welcome Screen Big Profile Logo Styles */
         .welcome-logo-container {
-            position: relative;
-            padding: 8px;
-            background: linear-gradient(135deg, #00f2fe, #7f00ff, #ff007f);
-            border-radius: 24px;
-            box-shadow: 0 0 40px rgba(127, 0, 255, 0.6);
-            display: inline-block;
+            position: relative; padding: 8px; background: linear-gradient(135deg, #00f2fe, #7f00ff, #ff007f); border-radius: 24px; box-shadow: 0 0 40px rgba(127, 0, 255, 0.6); display: inline-block;
         }
-
         .welcome-logo-container img {
-            display: block;
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
-            border-radius: 18px;
-            position: relative;
-            z-index: 2;
+            display: block; width: 110px; height: 110px; object-fit: cover; border-radius: 18px; position: relative; z-index: 2;
         }
-
         .firework {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 3;
-            animation: explode 0.8s ease-out forwards;
+            position: absolute; width: 4px; height: 4px; border-radius: 50%; pointer-events: none; z-index: 3; animation: explode 0.8s ease-out forwards;
         }
-
         @keyframes explode {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--x), var(--y)) scale(0);
-                opacity: 0;
-            }
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
         }
     </style>
 </head>
 <body class="bg-[#0b0f19] text-white font-sans min-h-screen">
 
-    <!-- Welcome Overlay Screen with Dynamic Cyan-Indigo Gradient -->
+    <!-- Welcome Overlay Screen -->
     <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center px-4 bg-gradient-to-br from-indigo-950 via-[#0f0c1b] to-slate-950 transition-opacity duration-500">
         <div class="relative z-20 flex flex-col items-center max-w-2xl">
-            
-            <!-- Welcome Screen Profile Photo with Neon Border -->
             <div class="welcome-logo-container mb-6" id="welcome-logo-frame">
                 <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Welcome Photo">
             </div>
-
-            <!-- Welcome Heading with Vibrant Cyan & Gold Tone -->
             <h1 class="text-4xl md:text-6xl font-black mb-8 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 drop-shadow-[0_5px_15px_rgba(56,189,248,0.4)] animate-pulse">
                 Welcome Hasindu TV
             </h1>
-            
-            <!-- Sleek Glassmorphism Box with Button -->
             <div class="bg-gray-900/80 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-cyan-500/30">
                 <button onclick="enterSite()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3.5 px-6 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition duration-300 text-lg shadow-[0_0_20px_rgba(6,182,212,0.4)] cursor-pointer flex items-center justify-center gap-2">
                     <span>Go to Home Page</span>
@@ -96,60 +49,97 @@
         </div>
     </div>
 
-    <!-- Main Website Content (Hidden initially) -->
+    <!-- Main Website Content -->
     <div id="main-content" class="hidden min-h-screen flex flex-col">
-        <!-- Navbar -->
-        <nav class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 px-6 py-4 flex justify-between items-center sticky top-0 z-40 shadow-lg">
-            <div class="flex items-center space-x-3">
-                <!-- Navbar Profile Logo -->
-                <div class="logo-container" id="nav-logo-frame">
-                    <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Logo">
+        <!-- Navbar with Horizontal Options (Live Stream, News, Teledrama) -->
+        <nav class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 px-6 py-4 sticky top-0 z-40 shadow-lg">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="logo-container" id="nav-logo-frame">
+                        <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Logo">
+                    </div>
+                    <span class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">
+                        Hasindu TV
+                    </span>
                 </div>
-                <span class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">
-                    Hasindu TV
-                </span>
-            </div>
-            <div class="flex items-center space-x-2 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1.5 rounded-full">
-                <span class="w-3 h-3 bg-cyan-400 rounded-full animate-ping"></span>
-                <span class="text-cyan-300 text-sm font-semibold uppercase tracking-wider">LIVE ON AIR</span>
+
+                <!-- Horizontal Navigation Options -->
+                <div class="flex items-center space-x-6 text-sm font-medium">
+                    <button onclick="switchTab('live')" id="btn-live" class="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-video"></i> Live Stream</button>
+                    <button onclick="switchTab('news')" id="btn-news" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-newspaper"></i> News</button>
+                    <button onclick="switchTab('teledrama')" id="btn-teledrama" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-film"></i> Teledrama</button>
+                </div>
+
+                <!-- Admin Access & Live Status -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleAdminModal()" class="bg-gray-800 hover:bg-gray-700 text-cyan-400 border border-cyan-500/30 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-lock"></i> Admin Panel
+                    </button>
+                    <div class="flex items-center space-x-2 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1.5 rounded-full">
+                        <span class="w-3 h-3 bg-cyan-400 rounded-full animate-ping"></span>
+                        <span class="text-cyan-300 text-sm font-semibold uppercase tracking-wider">LIVE</span>
+                    </div>
+                </div>
             </div>
         </nav>
 
-        <!-- Main Container -->
-        <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8 flex-grow w-full">
+        <!-- Main Container Sections -->
+        <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
             
-            <!-- Left & Center: Live Stream Player (2 Columns) -->
-            <div class="lg:col-span-2 space-y-6">
-                <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
-                    <div class="relative aspect-video bg-black flex items-center justify-center">
-                        <!-- YouTube Live Stream Embed Link -->
-                        <iframe class="w-full h-full absolute inset-0" src="url?id=0" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- SECTION 1: LIVE STREAM -->
+            <div id="section-live" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="relative aspect-video bg-black flex items-center justify-center">
+                            <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
+                            <p class="text-gray-400 text-sm">Welcome to the live broadcast of Hasindu TV.</p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
-                        <p class="text-gray-400 text-sm">Welcome to the official streaming channel of Hasindu TV. Enjoy the live broadcast and recent videos!</p>
+                </div>
+
+                <!-- Chat Box -->
+                <div class="space-y-6">
+                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[400px]">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-cyan-400 border-b border-gray-800 pb-2">
+                            <i class="fa-solid fa-comments"></i> Stream Chat
+                        </h3>
+                        <div class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
+                            <div class="bg-gray-950 p-2.5 rounded-xl border border-gray-800/50">
+                                <span class="text-cyan-400 font-semibold block text-xs">Hasindu TV (Host)</span>
+                                Welcome to the stream! 🔥
+                            </div>
+                        </div>
+                        <div class="mt-3 flex gap-2">
+                            <input type="text" placeholder="Type a message..." class="bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm w-full focus:outline-none focus:border-cyan-500 text-white">
+                            <button class="bg-cyan-500 hover:bg-cyan-600 text-black font-bold px-4 rounded-xl text-sm transition"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Video Gallery / Playlist -->
-            <div class="space-y-6">
-                <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-6 shadow-xl">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-cyan-400">
-                        <i class="fa-solid fa-photo-film"></i> Recent Broadcasts
-                    </h3>
-                    <div class="space-y-4">
-                        <!-- Video Item 1 -->
-                        <div class="bg-gray-950 border border-gray-800/60 rounded-xl p-3 flex gap-3 items-center hover:border-cyan-500/50 transition cursor-pointer">
-                            <div class="w-24 h-16 bg-gray-900 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
-                                <i class="fa-solid fa-play text-cyan-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm">Hasindu TV - Stream Highlights #1</h4>
-                                <span class="text-xs text-gray-500">Official Upload</span>
-                            </div>
-                        </div>
-                    </div>
+            <!-- SECTION 2: NEWS (Admin Managed) -->
+            <div id="section-news" class="hidden space-y-6">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                    <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> Latest News</h2>
+                </div>
+                <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Dynamic News Items will load here -->
+                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-4 text-center text-gray-500">No news uploaded yet. Use Admin Panel to add.</div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: TELEDRAMA (Admin Managed) -->
+            <div id="section-teledrama" class="hidden space-y-6">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                    <h2 class="text-2xl font-bold text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-film"></i> Teledramas & Episodes</h2>
+                </div>
+                <div id="teledrama-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Dynamic Teledrama Items will load here -->
+                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-4 text-center text-gray-500">No teledramas uploaded yet. Use Admin Panel to add.</div>
                 </div>
             </div>
 
@@ -161,26 +151,136 @@
         </footer>
     </div>
 
-    <!-- JavaScript for Welcome screen & Fireworks Animations -->
+    <!-- ADMIN LOGIN & UPLOAD MODAL (Hidden by default) -->
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            
+            <div id="admin-login-box">
+                <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-lock"></i> Admin Authentication</h3>
+                <p class="text-xs text-gray-400 mb-4">Enter admin password to upload videos and photos.</p>
+                <input type="password" id="admin-pass" placeholder="Enter Password..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-sm mb-4 text-white focus:outline-none focus:border-cyan-500">
+                <button onclick="verifyAdmin()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2.5 rounded-xl transition cursor-pointer">Login</button>
+            </div>
+
+            <div id="admin-panel-box" class="hidden space-y-4">
+                <h3 class="text-xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-upload"></i> Upload Media (Admin)</h3>
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Select Section</label>
+                    <select id="upload-section" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                        <option value="news">News</option>
+                        <option value="teledrama">Teledrama</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Title</label>
+                    <input type="text" id="upload-title" placeholder="Video / Photo Title" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Image / Photo URL</label>
+                    <input type="text" id="upload-img" placeholder="Paste Image Link" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Video Link (YouTube Embed or MP4)</label>
+                    <input type="text" id="upload-video" placeholder="Paste Video Link" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+                <button onclick="savePost()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Publish Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script>
         function enterSite() {
             const welcomeScreen = document.getElementById('welcome-screen');
             const mainContent = document.getElementById('main-content');
-            
             welcomeScreen.style.opacity = '0';
             setTimeout(() => {
                 welcomeScreen.style.display = 'none';
                 mainContent.classList.remove('hidden');
+                loadPosts();
             }, 500);
         }
 
-        // Generic Firework Creator Function with Neon Colors
+        function switchTab(tab) {
+            document.getElementById('section-live').classList.add('hidden');
+            document.getElementById('section-news').classList.add('hidden');
+            document.getElementById('section-teledrama').classList.add('hidden');
+
+            document.getElementById('btn-live').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
+            document.getElementById('btn-news').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
+            document.getElementById('btn-teledrama').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
+
+            document.getElementById('section-' + tab).classList.remove('hidden');
+            document.getElementById('btn-' + tab).className = "text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer font-bold";
+        }
+
+        function toggleAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function verifyAdmin() {
+            const pass = document.getElementById('admin-pass').value;
+            // ඔයාට අවශ්‍ය පාස්වර්ඩ් එක මෙතන වෙනස් කරගන්න (දැන් තියෙන්නේ 'hasindu123')
+            if (pass === 'hasindu123') {
+                document.getElementById('admin-login-box').classList.add('hidden');
+                document.getElementById('admin-panel-box').classList.remove('hidden');
+            } else {
+                alert('Wrong Password!');
+            }
+        }
+
+        // Save and Load Posts via LocalStorage
+        function savePost() {
+            const section = document.getElementById('upload-section').value;
+            const title = document.getElementById('upload-title').value;
+            const img = document.getElementById('upload-img').value;
+            const video = document.getElementById('upload-video').value;
+
+            if(!title) { alert('Please enter a title'); return; }
+
+            let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+            posts.push({ section, title, img, video });
+            localStorage.setItem('hasindu_posts', JSON.stringify(posts));
+
+            alert('Published Successfully!');
+            document.getElementById('upload-title').value = '';
+            document.getElementById('upload-img').value = '';
+            document.getElementById('upload-video').value = '';
+            toggleAdminModal();
+            loadPosts();
+        }
+
+        function loadPosts() {
+            let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+            let newsHTML = '';
+            let teleHTML = '';
+
+            posts.forEach(p => {
+                let card = `
+                    <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                        ${p.img ? `<img src="${p.img}" class="w-full h-40 object-cover" alt="Post Image">` : ''}
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-2 text-white">${p.title}</h3>
+                            ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3 py-1.5 rounded-lg inline-flex items-center gap-1 mt-2 hover:bg-cyan-500/20"><i class="fa-solid fa-play"></i> Watch Video</a>` : ''}
+                        </div>
+                    </div>
+                `;
+                if(p.section === 'news') newsHTML += card;
+                if(p.section === 'teledrama') teleHTML += card;
+            });
+
+            if(newsHTML) document.getElementById('news-container').innerHTML = newsHTML;
+            if(teleHTML) document.getElementById('teledrama-container').innerHTML = teleHTML;
+        }
+
+        // Fireworks background effects
         function createFirework(frameElement, particleCount, distanceMax) {
             if (!frameElement) return;
             const rect = frameElement.getBoundingClientRect();
             const edge = Math.floor(Math.random() * 4);
             let startX, startY;
-
             if (edge === 0) { startX = Math.random() * rect.width; startY = 0; }
             else if (edge === 1) { startX = Math.random() * rect.width; startY = rect.height; }
             else if (edge === 2) { startX = 0; startY = Math.random() * rect.height; }
@@ -189,33 +289,24 @@
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('firework');
-                
                 const colors = ['#00f2fe', '#4facfe', '#7f00ff', '#ff007f', '#ffffff'];
                 particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 particle.style.left = startX + 'px';
                 particle.style.top = startY + 'px';
-
                 const angle = Math.random() * Math.PI * 2;
                 const distance = 20 + Math.random() * distanceMax;
                 particle.style.setProperty('--x', (Math.cos(angle) * distance) + 'px');
                 particle.style.setProperty('--y', (Math.sin(angle) * distance) + 'px');
-
                 frameElement.appendChild(particle);
                 setTimeout(() => particle.remove(), 800);
             }
         }
 
-        // Welcome Screen Logo Fireworks
         const welcomeLogoFrame = document.getElementById('welcome-logo-frame');
-        setInterval(() => {
-            createFirework(welcomeLogoFrame, 14, 60);
-        }, 500);
+        setInterval(() => createFirework(welcomeLogoFrame, 14, 60), 500);
 
-        // Navbar Logo Fireworks
         const navLogoFrame = document.getElementById('nav-logo-frame');
-        setInterval(() => {
-            createFirework(navLogoFrame, 8, 30);
-        }, 600);
+        setInterval(() => createFirework(navLogoFrame, 8, 30), 600);
     </script>
 
 </body>

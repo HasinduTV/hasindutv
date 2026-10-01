@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasindu TV - Official Dashboard</title>
+    <title>Hasindu TV - නිල ඩෑෂ්බෝඩ් එක</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -31,27 +31,27 @@
 </head>
 <body class="bg-[#0b0f19] text-white font-sans min-h-screen">
 
-    <!-- Welcome Overlay Screen -->
+    <!-- පිළිගැනීමේ තිරය (Welcome Screen) -->
     <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center px-4 bg-gradient-to-br from-indigo-950 via-[#0f0c1b] to-slate-950 transition-opacity duration-500">
         <div class="relative z-20 flex flex-col items-center max-w-2xl">
             <div class="welcome-logo-container mb-6" id="welcome-logo-frame">
                 <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Welcome Photo">
             </div>
             <h1 class="text-4xl md:text-6xl font-black mb-8 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 drop-shadow-[0_5px_15px_rgba(56,189,248,0.4)] animate-pulse">
-                Welcome Hasindu TV
+                Hasindu TV වෙත සාදරයෙන් පිළිගනිමු
             </h1>
             <div class="bg-gray-900/80 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-cyan-500/30">
                 <button onclick="enterSite()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3.5 px-6 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition duration-300 text-lg shadow-[0_0_20px_rgba(6,182,212,0.4)] cursor-pointer flex items-center justify-center gap-2">
-                    <span>Go to Home Page</span>
+                    <span>මුල් පිටුවට යන්න</span>
                     <i class="fa-solid fa-arrow-right text-sm"></i>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Main Website Content -->
+    <!-- ප්‍රධාන වෙබ් අඩවි අන්තර්ගතය -->
     <div id="main-content" class="hidden min-h-screen flex flex-col">
-        <!-- Navbar -->
+        <!-- සංචාලන තීරුව (Navbar) -->
         <nav class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 px-6 py-4 sticky top-0 z-40 shadow-lg">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center space-x-3">
@@ -64,122 +64,116 @@
                 </div>
 
                 <div class="flex items-center space-x-6 text-sm font-medium">
-                    <button onclick="switchTab('live')" id="btn-live" class="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-video"></i> Live Stream</button>
-                    <button onclick="switchTab('news')" id="btn-news" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-newspaper"></i> News</button>
-                    <button onclick="switchTab('teledrama')" id="btn-teledrama" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-film"></i> Teledrama</button>
+                    <button onclick="switchTab('live')" id="btn-live" class="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-video"></i> සජීවී විකාශය</button>
+                    <button onclick="switchTab('news')" id="btn-news" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-newspaper"></i> ප්‍රවෘත්ති</button>
+                    <button onclick="switchTab('teledrama')" id="btn-teledrama" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-film"></i> ටෙලි නාට්‍ය</button>
                 </div>
 
                 <div class="flex items-center space-x-4">
                     <div class="flex items-center space-x-2 bg-red-500/10 border border-red-500/30 px-3 py-1.5 rounded-full">
                         <span class="w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
-                        <span class="text-red-400 text-sm font-semibold uppercase tracking-wider">LIVE</span>
+                        <span class="text-red-400 text-sm font-semibold uppercase tracking-wider">සජීවීයි</span>
                     </div>
                 </div>
             </div>
         </nav>
 
-        <!-- Main Container Sections -->
+        <!-- ප්‍රධාන කොටස් (Main Container Sections) -->
         <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
             
-            <!-- SECTION 1: LIVE STREAM WITH RIGHT SIDE BOX -->
+            <!-- කොටස 1: සජීවී විකාශය සහ දකුණු පැත්තේ කොටුව -->
             <div id="section-live" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Left: Live Video Player -->
+                <!-- වම් පැත්ත: සජීවී වීඩියෝ වාදකය -->
                 <div class="lg:col-span-2 space-y-6">
                     <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
                         <div class="relative aspect-video bg-black flex items-center justify-center">
                             <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="p-6">
-                            <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV Official Live Broadcast</h2>
-                            <p class="text-gray-400 text-sm">Welcome to the live broadcast of Hasindu TV.</p>
+                            <h2 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV නිල සජීවී විකාශය</h2>
+                            <p class="text-gray-400 text-sm">Hasindu TV සජීවී විකාශය වෙත සාදරයෙන් පිළිගනිමු.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Admin Uploaded Mini Feed (Only Admin can add content here via Ctrl + M) -->
+                <!-- දකුණු පැත්ත: පරිපාලක යාවත්කාලීන කිරීම් (Admin Uploads) -->
                 <div class="space-y-6">
                     <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[480px]">
-                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-cyan-400 border-b border-gray-800 pb-2">
-                            <i class="fa-solid fa-star"></i> Live Updates & Photos
-                        </h3>
-                        <!-- Stream Side Feed Container -->
                         <div id="stream-side-container" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
-                            <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/50 text-center text-gray-500">
-                                No updates posted yet.
-                            </div>
+                            <!-- කිසිදු පෙළක් හෝ සිරස්තලයක් නොමැත -->
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SECTION 2: NEWS -->
+            <!-- කොටස 2: ප්‍රවෘත්ති -->
             <div id="section-news" class="hidden space-y-6">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                    <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> Latest News</h2>
+                    <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> නවතම ප්‍රවෘත්ති</h2>
                 </div>
                 <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500 col-span-full">No news uploaded yet.</div>
+                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500 col-span-full">තවම ප්‍රවෘත්ති එකතු කර නැත.</div>
                 </div>
             </div>
 
-            <!-- SECTION 3: TELEDRAMA -->
+            <!-- කොටස 3: ටෙලි නාට්‍ය -->
             <div id="section-teledrama" class="hidden space-y-6">
                 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                    <h2 class="text-2xl font-bold text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-film"></i> Teledramas & Episodes</h2>
+                    <h2 class="text-2xl font-bold text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-film"></i> ටෙලි නාට්‍ය සහ කොටස්</h2>
                 </div>
                 <div id="teledrama-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500 col-span-full">No teledramas uploaded yet.</div>
+                    <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500 col-span-full">තවම ටෙලි නාට්‍ය එකතු කර නැත.</div>
                 </div>
             </div>
 
         </main>
 
-        <!-- Footer -->
+        <!-- පාදකය (Footer) -->
         <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-900 mt-12">
-            &copy; 2026 Hasindu TV. All rights reserved.
+            &copy; 2026 Hasindu TV. සියලු හිමිකම් ඇවිරිණි.
         </footer>
     </div>
 
-    <!-- ADMIN LOGIN & UPLOAD MODAL (Opens via Ctrl + M) -->
+    <!-- පරිපාලක පුරනය වීම සහ උඩුගත කිරීමේ පැනලය (Ctrl + මඟින් විවෘත වේ) -->
     <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl max-w-md w-full shadow-2xl relative">
             <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             
             <div id="admin-login-box">
-                <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-lock"></i> Admin Authentication</h3>
-                <p class="text-xs text-gray-400 mb-4">Enter admin password to upload videos and photos.</p>
-                <input type="password" id="admin-pass" placeholder="Enter Password..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-sm mb-4 text-white focus:outline-none focus:border-cyan-500">
-                <button onclick="verifyAdmin()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2.5 rounded-xl transition cursor-pointer">Login</button>
+                <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-lock"></i> පරිපාලක තහවුරු කිරීම</h3>
+                <p class="text-xs text-gray-400 mb-4">වීඩියෝ සහ ඡායාරූප උඩුගත කිරීමට මුරපදය ඇතුළත් කරන්න.</p>
+                <input type="password" id="admin-pass" placeholder="මුරපදය ඇතුළත් කරන්න..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-sm mb-4 text-white focus:outline-none focus:border-cyan-500">
+                <button onclick="verifyAdmin()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2.5 rounded-xl transition cursor-pointer">පුරනය වන්න</button>
             </div>
 
             <div id="admin-panel-box" class="hidden space-y-4">
-                <h3 class="text-xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-upload"></i> Upload Media (Admin)</h3>
+                <h3 class="text-xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-upload"></i> මාධ්‍ය උඩුගත කරන්න</h3>
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">Select Section</label>
+                    <label class="text-xs text-gray-400 block mb-1">කොටස තෝරන්න</label>
                     <select id="upload-section" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
-                        <option value="stream-side">Live Stream Right Box (Mini Update)</option>
-                        <option value="news">News Section</option>
-                        <option value="teledrama">Teledrama Section</option>
+                        <option value="stream-side">සජීවී විකාශන දකුණු පෙට්ටිය (කුඩා යාවත්කාලීනය)</option>
+                        <option value="news">ප්‍රවෘත්ති අංශය</option>
+                        <option value="teledrama">ටෙලි නාට්‍ය අංශය</option>
                     </select>
                 </div>
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">Title</label>
-                    <input type="text" id="upload-title" placeholder="Post Title" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    <label class="text-xs text-gray-400 block mb-1">මාතෘකාව</label>
+                    <input type="text" id="upload-title" placeholder="පෝස්ට් මාතෘකාව" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                 </div>
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">Image / Photo URL</label>
-                    <input type="text" id="upload-img" placeholder="Paste Image Link" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    <label class="text-xs text-gray-400 block mb-1">රූප / ඡායාරූප සබැඳිය (Image URL)</label>
+                    <input type="text" id="upload-img" placeholder="රූප සබැඳිය අලවන්න" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                 </div>
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">Video Link (Optional)</label>
-                    <input type="text" id="upload-video" placeholder="Paste Video Link" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    <label class="text-xs text-gray-400 block mb-1">වීඩියෝ සබැඳිය (විකල්ප)</label>
+                    <input type="text" id="upload-video" placeholder="වීඩියෝ සබැඳිය අලවන්න" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                 </div>
-                <button onclick="savePost()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Publish Post</button>
+                <button onclick="savePost()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">ප්‍රකාශයට පත් කරන්න</button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- ජාවාස්ක්‍රිප්ට් -->
     <script>
         function enterSite() {
             const welcomeScreen = document.getElementById('welcome-screen');
@@ -205,7 +199,7 @@
             document.getElementById('btn-' + tab).className = "text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer font-bold";
         }
 
-        // Shortcut: Ctrl + M for Admin Panel
+        // කෙටිමඟ: පරිපාලක පැනලය සඳහා Ctrl + M
         document.addEventListener('keydown', function(event) {
             if (event.ctrlKey && event.key.toLowerCase() === 'm') {
                 event.preventDefault();
@@ -224,7 +218,7 @@
                 document.getElementById('admin-login-box').classList.add('hidden');
                 document.getElementById('admin-panel-box').classList.remove('hidden');
             } else {
-                alert('Wrong Password!');
+                alert('වැරදි මුරපදයකි!');
             }
         }
 
@@ -234,13 +228,13 @@
             const img = document.getElementById('upload-img').value;
             const video = document.getElementById('upload-video').value;
 
-            if(!title) { alert('Please enter a title'); return; }
+            if(!title) { alert('කරුණාකර මාතෘකාවක් ඇතුළත් කරන්න'); return; }
 
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
             posts.push({ section, title, img, video });
             localStorage.setItem('hasindu_posts', JSON.stringify(posts));
 
-            alert('Published Successfully!');
+            alert('සාර්ථකව ප්‍රකාශයට පත් කරන ලදී!');
             document.getElementById('upload-title').value = '';
             document.getElementById('upload-img').value = '';
             document.getElementById('upload-video').value = '';
@@ -260,7 +254,7 @@
                         ${p.img ? `<img src="${p.img}" class="w-full h-48 object-cover" alt="Post Image">` : ''}
                         <div class="p-4">
                             <h3 class="font-bold text-lg mb-2 text-white">${p.title}</h3>
-                            ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3 py-2 rounded-xl inline-flex items-center gap-1.5 mt-2 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> Watch Video</a>` : ''}
+                            ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3 py-2 rounded-xl inline-flex items-center gap-1.5 mt-2 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> නරඹන්න</a>` : ''}
                         </div>
                     </div>
                 `;
@@ -269,7 +263,7 @@
                     <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80 space-y-2">
                         ${p.img ? `<img src="${p.img}" class="w-full h-32 object-cover rounded-lg" alt="Side Image">` : ''}
                         <h4 class="font-bold text-sm text-white">${p.title}</h4>
-                        ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> Watch</a>` : ''}
+                        ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> නරඹන්න</a>` : ''}
                     </div>
                 `;
 
@@ -283,7 +277,7 @@
             if(teleHTML) document.getElementById('teledrama-container').innerHTML = teleHTML;
         }
 
-        // Fireworks background effects
+        // ගිනිකෙළි පසුබිම් ප්‍රයෝග (Fireworks effects)
         function createFirework(frameElement, particleCount, distanceMax) {
             if (!frameElement) return;
             const rect = frameElement.getBoundingClientRect();

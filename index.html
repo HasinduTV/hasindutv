@@ -77,9 +77,9 @@
             </div>
             
             <div class="space-y-2">
-                <h3 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">නව පුවත් දැනුම්දීමයි!</h3>
+                <h3 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">දැනුම්දීමයි!</h3>
                 <p class="text-gray-300 text-sm leading-relaxed">
-                    Hasindu TV වෙතින් නිකුත් වන නවතම පුවත් සහ විශේෂ දැනුම්දීම් වහාම ලබා ගැනීමට **OK** ක්ලික් කරන්න!
+                    Hasindu TV වෙතින් නිකුත් වන නවතම පුවත් සහ විශේෂ දැනුම්දීම් වහාම ලබා ගැනීමට  OK ක්ලික් කරන්න!
                 </p>
             </div>
 
@@ -92,11 +92,10 @@
     <!-- ප්‍රධාන වෙබ් අඩවි අන්තර්ගතය -->
     <div id="main-content" class="hidden min-h-screen flex flex-col">
         
-        <!-- සංචාලන තීරුව (Navbar - නම, පින්තූරය සහ යටින් ඇති Options) -->
+        <!-- සංචාලන තීරුව (Navbar) -->
         <nav class="bg-gray-900/95 backdrop-blur-md border-b border-gray-800 px-6 py-4 sticky top-0 z-40 shadow-xl relative overflow-hidden" id="header-nav-box">
             <div class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-4 relative z-10">
                 
-                <!-- මැද පිහිටුවන ලද නම සහ ඡායාරූපය -->
                 <div class="flex items-center space-x-3">
                     <div class="logo-container" id="nav-logo-frame">
                         <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Logo">
@@ -106,7 +105,6 @@
                     </span>
                 </div>
 
-                <!-- ඊට යටින් පිහිටුවන ලද Options -->
                 <div class="flex flex-wrap items-center justify-center gap-6 text-sm font-medium w-full pt-2 border-t border-gray-800/60">
                     <button onclick="switchTab('home')" id="btn-home" class="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer font-bold"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">මුල් පිටුව</span></button>
                     <button onclick="switchTab('live')" id="btn-live" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-video"></i> <span data-i18n="nav-live">සජීවී විකාශය</span></button>
@@ -222,7 +220,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="text-xs text-gray-400 block mb-1">මාතෘකාව / විස්තරය (Text)</label>
+                        <label class="text-xs text-gray-400 block mb-1">මාතෘකාව / විස්තරය (Title / Text)</label>
                         <input type="text" id="upload-title" placeholder="පෝස්ට් මාතෘකාව හෝ විස්තරය" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                     </div>
                     <div>
@@ -529,11 +527,12 @@
                     </div>
                 `;
 
+                // මෙහි News, Teledrama සහ Other අංශ සඳහා මාතෘකාව (Title) නිවැරදිව පෙන්වීමට සකසා ඇත
                 let card = `
                     <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                         ${p.img ? `<div class="w-full bg-black/40 flex items-center justify-center overflow-hidden"><img src="${p.img}" class="w-full h-auto max-h-[300px] object-contain" alt="Post Image"></div>` : ''}
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg mb-2 text-white">${p.title}</h3>
+                        <div class="p-4 space-y-2">
+                            ${p.title ? `<h3 class="font-bold text-lg text-white">${p.title}</h3>` : ''}
                             ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3 py-2 rounded-xl inline-flex items-center gap-1.5 mt-2 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> ${t.watchBtn}</a>` : ''}
                         </div>
                     </div>
@@ -542,7 +541,7 @@
                 let sideCard = `
                     <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80 space-y-2">
                         ${p.img ? `<div class="w-full bg-black flex items-center justify-center rounded-lg overflow-hidden"><img src="${p.img}" class="w-full h-auto object-contain rounded-lg" alt="Side Image"></div>` : ''}
-                        <h4 class="font-bold text-sm text-white">${p.title}</h4>
+                        ${p.title ? `<h4 class="font-bold text-sm text-white">${p.title}</h4>` : ''}
                         ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> ${t.watchBtn}</a>` : ''}
                     </div>
                 `;
@@ -590,19 +589,18 @@
         const welcomeLogoFrame = document.getElementById('welcome-logo-frame');
         setInterval(() => createFirework(welcomeLogoFrame, 14, 60), 500);
 
-        // Header තීරුව මත හිම බෝල (Snowflakes) ජනනය කිරීමේ කේතය
         function createSnowflake() {
             const navBox = document.getElementById('header-nav-box');
             if (!navBox) return;
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
             
-            const size = Math.random() * 5 + 3; // හිම බෝලයේ ප්‍රමාණය (3px සිට 8px දක්වා)
+            const size = Math.random() * 5 + 3;
             snowflake.style.width = size + 'px';
             snowflake.style.height = size + 'px';
             snowflake.style.left = Math.random() * navBox.offsetWidth + 'px';
             
-            const duration = Math.random() * 3 + 2; // වැටීමට ගතවන කාලය (සෙකන්ඩ් 2 සිට 5 දක්වා)
+            const duration = Math.random() * 3 + 2;
             snowflake.style.animationDuration = duration + 's';
             snowflake.style.opacity = Math.random() * 0.7 + 0.3;
             
@@ -612,7 +610,7 @@
             }, duration * 1000);
         }
 
-        setInterval(createSnowflake, 150); // හිම බෝල වැටීම
+        setInterval(createSnowflake, 150);
     </script>
 
 </body>

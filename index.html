@@ -39,7 +39,7 @@
         @keyframes fall {
             0% { transform: translateY(-10px); opacity: 0; }
             20% { opacity: 0.8; }
-            100% { transform: translateY(120px); opacity: 0; }
+            100% { transform: translateY(160px); opacity: 0; }
         }
     </style>
 </head>
@@ -92,7 +92,7 @@
     <!-- ප්‍රධාන වෙබ් අඩවි අන්තර්ගතය -->
     <div id="main-content" class="hidden min-h-screen flex flex-col">
         
-        <!-- සංචාලන තීරුව (Navbar - මැදට යෙදුණු නම, පින්තූරය සහ යටින් ඇති Options) -->
+        <!-- සංචාලන තීරුව (Navbar - නම, පින්තූරය සහ යටින් ඇති Options) -->
         <nav class="bg-gray-900/95 backdrop-blur-md border-b border-gray-800 px-6 py-4 sticky top-0 z-40 shadow-xl relative overflow-hidden" id="header-nav-box">
             <div class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-4 relative z-10">
                 
@@ -106,17 +106,13 @@
                     </span>
                 </div>
 
-                <!-- ඊට යටින් පිහිටුවන ලද Options සහ Live Badge එක -->
+                <!-- ඊට යටින් පිහිටුවන ලද Options -->
                 <div class="flex flex-wrap items-center justify-center gap-6 text-sm font-medium w-full pt-2 border-t border-gray-800/60">
                     <button onclick="switchTab('home')" id="btn-home" class="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer font-bold"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">මුල් පිටුව</span></button>
                     <button onclick="switchTab('live')" id="btn-live" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-video"></i> <span data-i18n="nav-live">සජීවී විකාශය</span></button>
                     <button onclick="switchTab('news')" id="btn-news" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-newspaper"></i> <span data-i18n="nav-news">ප්‍රවෘත්ති</span></button>
                     <button onclick="switchTab('teledrama')" id="btn-teledrama" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-film"></i> <span data-i18n="nav-tele">ටෙලි නාට්‍ය</span></button>
-                    
-                    <div class="flex items-center space-x-2 bg-red-500/10 border border-red-500/30 px-3 py-1 rounded-full ml-2">
-                        <span class="w-2.5 h-2.5 bg-red-500 rounded-full animate-ping"></span>
-                        <span id="badge-live" class="text-red-400 text-xs font-semibold uppercase tracking-wider">සජීවීයි</span>
-                    </div>
+                    <button onclick="switchTab('other')" id="btn-other" class="text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer"><i class="fa-solid fa-tv"></i> <span data-i18n="nav-other">වෙනත් වැඩසටහන්</span></button>
                 </div>
 
             </div>
@@ -179,6 +175,16 @@
                 </div>
             </div>
 
+            <!-- කොටස 4: වෙනත් වැඩසටහන් -->
+            <div id="section-other" class="hidden space-y-6">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                    <h2 class="text-2xl font-bold text-sky-400 flex items-center gap-2"><i class="fa-solid fa-tv"></i> <span data-i18n="nav-other">වෙනත් වැඩසටහන්</span></h2>
+                </div>
+                <div id="other-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="other-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500 col-span-full">තවම වෙනත් වැඩසටහන් එකතු කර නැත.</div>
+                </div>
+            </div>
+
         </main>
 
         <!-- පාදකය (Footer) -->
@@ -212,6 +218,7 @@
                             <option value="stream-side">මුල් පිටුවේ දකුණු පෙට්ටිය (කුඩා යාවත්කාලීනය)</option>
                             <option value="news">ප්‍රවෘත්ති අංශය</option>
                             <option value="teledrama">ටෙලි නාට්‍ය අංශය</option>
+                            <option value="other">වෙනත් වැඩසටහන් අංශය</option>
                         </select>
                     </div>
                     <div>
@@ -250,12 +257,13 @@
                 navLive: "සජීවී විකාශය",
                 navNews: "ප්‍රවෘත්ති",
                 navTele: "ටෙලි නාට්‍ය",
-                badgeLive: "සජීවීයි",
+                navOther: "වෙනත් වැඩසටහන්",
                 liveTitle: "Hasindu TV නිල සජීවී විකාශය",
                 liveDesc: "Hasindu TV සජීවී විකාශය වෙත සාදරයෙන් පිළිගනිමු.",
                 homeEmpty: "තවම පෝස්ට් එකතු කර නැත.",
                 newsEmpty: "තවම ප්‍රවෘත්ති එකතු කර නැත.",
                 teleEmpty: "තවම ටෙලි නාට්‍ය එකතු කර නැත.",
+                otherEmpty: "තවම වෙනත් වැඩසටහන් එකතු කර නැත.",
                 footerRights: "සියලු හිමිකම් ඇවිරිණි.",
                 watchBtn: "නරඹන්න",
                 commentPlaceholder: "ඔබේ අදහස ලියන්න...",
@@ -266,12 +274,13 @@
                 navLive: "Live Stream",
                 navNews: "News",
                 navTele: "Teledramas",
-                badgeLive: "LIVE",
+                navOther: "Other Programs",
                 liveTitle: "Hasindu TV Official Live Stream",
                 liveDesc: "Welcome to the Hasindu TV live broadcast.",
                 homeEmpty: "No posts added yet.",
                 newsEmpty: "No news added yet.",
                 teleEmpty: "No teledramas added yet.",
+                otherEmpty: "No other programs added yet.",
                 footerRights: "All Rights Reserved.",
                 watchBtn: "Watch",
                 commentPlaceholder: "Write a comment...",
@@ -308,12 +317,13 @@
             document.querySelector('[data-i18n="nav-live"]').innerText = t.navLive;
             document.querySelector('[data-i18n="nav-news"]').innerText = t.navNews;
             document.querySelector('[data-i18n="nav-tele"]').innerText = t.navTele;
-            document.getElementById('badge-live').innerText = t.badgeLive;
+            document.querySelector('[data-i18n="nav-other"]').innerText = t.navOther;
             document.getElementById('live-card-title').innerText = t.liveTitle;
             document.getElementById('live-card-desc').innerText = t.liveDesc;
             document.querySelector('.home-empty-text').innerText = t.homeEmpty;
             document.querySelector('.news-empty-text').innerText = t.newsEmpty;
             document.querySelector('.tele-empty-text').innerText = t.teleEmpty;
+            document.querySelector('.other-empty-text').innerText = t.otherEmpty;
             document.querySelector('[data-i18n="footer-rights"]').innerText = t.footerRights;
         }
 
@@ -322,11 +332,13 @@
             document.getElementById('section-live').classList.add('hidden');
             document.getElementById('section-news').classList.add('hidden');
             document.getElementById('section-teledrama').classList.add('hidden');
+            document.getElementById('section-other').classList.add('hidden');
 
             document.getElementById('btn-home').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
             document.getElementById('btn-live').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
             document.getElementById('btn-news').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
             document.getElementById('btn-teledrama').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
+            document.getElementById('btn-other').className = "text-gray-300 hover:text-cyan-400 transition flex items-center gap-1.5 cursor-pointer";
 
             document.getElementById('section-' + tab).classList.remove('hidden');
             document.getElementById('btn-' + tab).className = "text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer font-bold";
@@ -480,6 +492,7 @@
             let sideHTML = '';
             let newsHTML = '';
             let teleHTML = '';
+            let otherHTML = '';
             const t = translations[currentLang];
 
             posts.forEach(p => {
@@ -538,12 +551,14 @@
                 if(p.section === 'stream-side') sideHTML += sideCard;
                 if(p.section === 'news') newsHTML += card;
                 if(p.section === 'teledrama') teleHTML += card;
+                if(p.section === 'other') otherHTML += card;
             });
 
             if(homeHTML) document.getElementById('home-posts-container').innerHTML = homeHTML;
             if(sideHTML) document.getElementById('stream-side-container').innerHTML = sideHTML;
             if(newsHTML) document.getElementById('news-container').innerHTML = newsHTML;
             if(teleHTML) document.getElementById('teledrama-container').innerHTML = teleHTML;
+            if(otherHTML) document.getElementById('other-container').innerHTML = otherHTML;
         }
 
         function createFirework(frameElement, particleCount, distanceMax) {
@@ -597,7 +612,7 @@
             }, duration * 1000);
         }
 
-        setInterval(createSnowflake, 150); // නිතරම හිම බෝල වැටෙන සේ සකසා ඇත
+        setInterval(createSnowflake, 150); // හිම බෝල වැටීම
     </script>
 
 </body>

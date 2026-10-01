@@ -38,12 +38,10 @@
                 <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Welcome Photo">
             </div>
             
-            <!-- Hasindu TV නම සහ යටින් භාෂා තේරීමේ බොත්තම් -->
             <h1 id="welcome-title" class="text-4xl md:text-6xl font-black mb-4 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 drop-shadow-[0_5px_15px_rgba(56,189,248,0.4)] animate-pulse">
                 Hasindu TV
             </h1>
-            <p id="welcome-subtitle" class="text-gray-300 text-sm md:text-base mb-8 font-medium">Hasindu TV නිල වෙබ් අඩවියට සාදරයෙන් පිළිගනිමු! කරුණාකර ඔබේ භාෂාව තෝරන්න 
-                Please select your language:</p>
+            <p id="welcome-subtitle" class="text-gray-300 text-sm md:text-base mb-8 font-medium">Hasindu TV නිල වෙබ් අඩවියට සාදරයෙන් පිළිගනිමු! කරුණාකර ඔබේ භාෂාව තෝරන්න / Please select your language:</p>
 
             <div class="flex items-center justify-center gap-6">
                 <button onclick="selectLanguage('si')" class="bg-gray-900/90 border border-cyan-500/50 hover:border-cyan-400 text-cyan-400 font-bold py-3.5 px-8 rounded-2xl transition duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] cursor-pointer text-lg">
@@ -89,37 +87,38 @@
         <!-- ප්‍රධාන කොටස් (Main Container Sections) -->
         <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
             
-            <!-- කොටස 0: මුල් පිටුව (Home Feed with Photos, Text and Comments) -->
-            <div id="section-home" class="space-y-6 max-w-3xl mx-auto">
-                <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                    <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">මුල් පිටුව (Home Feed)</span></h2>
-                </div>
-                <div id="home-posts-container" class="space-y-6">
-                    <div class="home-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම පෝස්ට් එකතු කර නැත.</div>
-                </div>
-            </div>
-
-            <!-- කොටස 1: සජීවී විකාශය සහ දකුණු පැත්තේ කොටුව -->
-            <div id="section-live" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- වම් පැත්ත: සජීවී වීඩියෝ වාදකය -->
+            <!-- කොටස 0: මුල් පිටුව (Home Feed with Left Main Posts & Right Side Container Box) -->
+            <div id="section-home" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- වම් පැත්ත: ප්‍රධාන පෝස්ට් සහ කමෙන්ට් අංශය -->
                 <div class="lg:col-span-2 space-y-6">
-                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
-                        <div class="relative aspect-video bg-black flex items-center justify-center">
-                            <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-6">
-                            <h2 id="live-card-title" class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV නිල සජීවී විකාශය</h2>
-                            <p id="live-card-desc" class="text-gray-400 text-sm">Hasindu TV සජීවී විකාශය වෙත සාදරයෙන් පිළිගනිමු.</p>
-                        </div>
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                        <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">මුල් පිටුව</span></h2>
+                    </div>
+                    <div id="home-posts-container" class="space-y-6">
+                        <div class="home-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම පෝස්ට් එකතු කර නැත.</div>
                     </div>
                 </div>
 
-                <!-- දකුණු පැත්ත: පරිපාලක යාවත්කාලීන කිරීම් (Admin Uploads) -->
+                <!-- දකුණු පැත්ත: මුල් පිටුවේ දකුණු පෙට්ටිය (Stream Side Container) -->
                 <div class="space-y-6">
-                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[480px]">
+                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[520px] sticky top-24">
+                        <h3 class="text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"><i class="fa-solid fa-bolt"></i> විශේෂ යාවත්කාලීන කිරීම්</h3>
                         <div id="stream-side-container" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
-                            <!-- කිසිදු පෙළක් හෝ සිරස්තලයක් නොමැත -->
+                            <div class="text-xs text-gray-600 italic text-center py-4">යාවත්කාලීන කිරීම් නොමැත.</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- කොටස 1: සජීවී විකාශය (Full Screen Video Player) -->
+            <div id="section-live" class="hidden space-y-6 max-w-4xl mx-auto">
+                <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="relative aspect-video bg-black flex items-center justify-center">
+                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Hasindu TV Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h2 id="live-card-title" class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Hasindu TV නිල සජීවී විකාශය</h2>
+                        <p id="live-card-desc" class="text-gray-400 text-sm">Hasindu TV සජීවී විකාශය වෙත සාදරයෙන් පිළිගනිමු.</p>
                     </div>
                 </div>
             </div>
@@ -170,7 +169,7 @@
                     <label class="text-xs text-gray-400 block mb-1">කොටස තෝරන්න</label>
                     <select id="upload-section" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
                         <option value="home">මුල් පිටුව (Home Feed - Photo & Text)</option>
-                        <option value="stream-side">සජීවී විකාශන දකුණු පෙට්ටිය (කුඩා යාවත්කාලීනය)</option>
+                        <option value="stream-side">මුල් පිටුවේ දකුණු පෙට්ටිය (කුඩා යාවත්කාලීනය)</option>
                         <option value="news">ප්‍රවෘත්ති අංශය</option>
                         <option value="teledrama">ටෙලි නාට්‍ය අංශය</option>
                     </select>
@@ -194,7 +193,7 @@
 
     <!-- ජාවාස්ක්‍රිප්ට් -->
     <script>
-        let currentLang = 'en'; // සාමාන්‍ය ලින්ක් එකෙන් කෙලින්ම එනකොට ඩිෆෝල්ට් එක English වේ
+        let currentLang = 'en';
 
         const translations = {
             si: {
@@ -291,7 +290,7 @@
 
         function verifyAdmin() {
             const pass = document.getElementById('admin-pass').value;
-            if (pass === 'hasindu123') {
+            if (pass === '@Hasindu136a7b1c1f3') {
                 document.getElementById('admin-login-box').classList.add('hidden');
                 document.getElementById('admin-panel-box').classList.remove('hidden');
             } else {

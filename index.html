@@ -101,15 +101,23 @@
                 </div>
 
                 <!-- දකුණු පැත්ත: මුල් පිටුවේ දකුණු පෙට්ටිය (Stream Side Container) -->
-                <div class="space-y-6">
-                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[520px] sticky top-24">
-                        <h3 class="text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"><i class="fa-solid fa-bolt"></i></h3>
-                        <div id="stream-side-container" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
-                            <div class="text-xs text-gray-600 italic text-center py-4">යාවත්කාලීන කිරීම් නොමැත.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
+                .photo-container {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}
+
+/* පින්තූරය කොටුවට සාපේක්ෂව සහ ප්‍රමාණයට නිවැරදිව පෙන්වීමට */
+.photo-container img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* ෆොටෝ එක කැපී යාම වළක්වයි */
+}
 
             <!-- කොටස 1: සජීවී විකාශය (Full Screen Video Player) -->
             <div id="section-live" class="hidden space-y-6 max-w-4xl mx-auto">

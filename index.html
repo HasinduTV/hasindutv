@@ -7,20 +7,27 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Ocean Wave Animated Background */
+        @keyframes oceanMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .ocean-bg {
+            background: linear-gradient(-45deg, #020617, #0369a1, #0284c7, #0f172a, #1e3a8a);
+            background-size: 400% 400%;
+            animation: oceanMove 12s ease infinite;
+        }
+    </style>
 </head>
 <body class="bg-gray-950 text-white font-sans min-h-screen">
 
-    <!-- Welcome Overlay Screen with Drone Video Background -->
-    <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center px-4 overflow-hidden transition-opacity duration-500">
+    <!-- Welcome Overlay Screen with Ocean Wave Background -->
+    <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center px-4 ocean-bg transition-opacity duration-500">
         
-        <!-- Background Drone Video -->
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-            <!-- මෙතැනට මුහුද උඩින් යන Drone වීඩියෝ එකක Direct MP4 Link එකක් දාන්න පුළුවන් -->
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-waves-crashing-on-sandy-beach-42287-large.mp4" type="video/mp4">
-        </video>
-
-        <!-- Dark Gradient Overlay (വීඩියෝ එක උඩින් අඳුරු පාට Layer එකක් - අකුරු පැහැදිලිව පේන්න) -->
-        <div class="absolute inset-0 bg-black/60 z-10"></div>
+        <!-- Dark Gradient Overlay for better readability -->
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
 
         <!-- Content (Welcome Text & Button) -->
         <div class="relative z-20 flex flex-col items-center max-w-2xl">
@@ -30,7 +37,7 @@
             </h1>
             
             <!-- White Box with Go to Home Page Button -->
-            <div class="bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-sm w-full">
+            <div class="bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-sky-300/30">
                 <button onclick="enterSite()" class="w-full bg-black text-white font-bold py-3.5 px-6 rounded-xl hover:bg-gray-800 transition duration-300 text-lg shadow-md cursor-pointer flex items-center justify-center gap-2">
                     <span>Go to Home Page</span>
                     <i class="fa-solid fa-arrow-right text-sm"></i>
@@ -87,7 +94,7 @@
                                 <i class="fa-solid fa-play text-red-500"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-sm line-clamp-1">Hasindu TV - Stream Highlights #1</h4>
+                                <h4 class="font-semibold text-sm line-click">Hasindu TV - Stream Highlights #1</h4>
                                 <span class="text-xs text-gray-500">Official Upload</span>
                             </div>
                         </div>

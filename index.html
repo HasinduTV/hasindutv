@@ -153,41 +153,58 @@
     </div>
 
     <!-- පරිපාලක පුරනය වීම සහ උඩුගත කිරීමේ පැනලය -->
-    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl max-w-md w-full shadow-2xl relative">
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl max-w-2xl w-full shadow-2xl relative my-8">
             <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             
             <div id="admin-login-box">
                 <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-lock"></i> පරිපාලක තහවුරු කිරීම</h3>
-                <p class="text-xs text-gray-400 mb-4">වීඩියෝ සහ ඡායාරූප උඩුගත කිරීමට මුරපදය ඇතුළත් කරන්න.</p>
+                <p class="text-xs text-gray-400 mb-4">පාලක පැනලය විවෘත කිරීමට මුරපදය ඇතුළත් කරන්න.</p>
                 <input type="password" id="admin-pass" placeholder="මුරපදය ඇතුළත් කරන්න..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-sm mb-4 text-white focus:outline-none focus:border-cyan-500">
                 <button onclick="verifyAdmin()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2.5 rounded-xl transition cursor-pointer">පුරනය වන්න</button>
             </div>
 
-            <div id="admin-panel-box" class="hidden space-y-4">
-                <h3 class="text-xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-upload"></i> මාධ්‍ය උඩුගත කරන්න</h3>
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">කොටස තෝරන්න</label>
-                    <select id="upload-section" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
-                        <option value="home">මුල් පිටුව (Home Feed - Photo & Text)</option>
-                        <option value="stream-side">මුල් පිටුවේ දකුණු පෙට්ටිය (කුඩා යාවත්කාලීනය)</option>
-                        <option value="news">ප්‍රවෘත්ති අංශය</option>
-                        <option value="teledrama">ටෙලි නාට්‍ය අංශය</option>
-                    </select>
+            <div id="admin-panel-box" class="hidden space-y-6">
+                <h3 class="text-xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-upload"></i> මාධ්‍ය කළමනාකරණය (Manage Posts)</h3>
+                
+                <!-- පෝස්ට් එකතු කිරීමේ/සංස්කරණය කිරීමේ පෝරමය -->
+                <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-4">
+                    <input type="hidden" id="edit-post-id" value="">
+                    <h4 id="form-mode-title" class="text-sm font-bold text-sky-400">නව පෝස්ට් එකක් එක් කරන්න</h4>
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">කොටස තෝරන්න</label>
+                        <select id="upload-section" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                            <option value="home">මුල් පිටුව (Home Feed - Photo & Text)</option>
+                            <option value="stream-side">මුල් පිටුවේ දකුණු පෙට්ටිය (කුඩා යාවත්කාලීනය)</option>
+                            <option value="news">ප්‍රවෘත්ති අංශය</option>
+                            <option value="teledrama">ටෙලි නාට්‍ය අංශය</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">මාතෘකාව / විස්තරය (Text)</label>
+                        <input type="text" id="upload-title" placeholder="පෝස්ට් මාතෘකාව හෝ විස්තරය" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">රූප / ඡායාරූප සබැඳිය (Image URL)</label>
+                        <input type="text" id="upload-img" placeholder="රූප සබැඳිය අලවන්න" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">වීඩියෝ සබැඳිය (විකල්ප)</label>
+                        <input type="text" id="upload-video" placeholder="වීඩියෝ සබැඳිය අලවන්න" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="savePost()" id="save-btn" class="flex-grow bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">ප්‍රකාශයට පත් කරන්න</button>
+                        <button onclick="resetForm()" id="cancel-edit-btn" class="hidden bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold px-4 py-2.5 rounded-xl transition cursor-pointer text-xs">අවලංගු කරන්න</button>
+                    </div>
                 </div>
+
+                <!-- පවතින සියලුම පෝස්ට් කළමනාකරණය (Manage List) -->
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">මාතෘකාව / විස්තරය (Text)</label>
-                    <input type="text" id="upload-title" placeholder="පෝස්ට් මාතෘකාව හෝ විස්තරය" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
+                    <h4 class="text-sm font-bold text-gray-300 mb-2">පවතින පෝස්ට් ලැයිස්තුව (Manage / Delete Posts)</h4>
+                    <div id="admin-posts-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                        <!-- පාලක පැනලයේ පෝස්ට් ලැයිස්තුව මෙහි පෙන්වයි -->
+                    </div>
                 </div>
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">රූප / ඡායාරූප සබැඳිය (Image URL)</label>
-                    <input type="text" id="upload-img" placeholder="රූප සබැඳිය අලවන්න" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
-                </div>
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">වීඩියෝ සබැඳිය (විකල්ප)</label>
-                    <input type="text" id="upload-video" placeholder="වීඩියෝ සබැඳිය අලවන්න" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white">
-                </div>
-                <button onclick="savePost()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">ප්‍රකාශයට පත් කරන්න</button>
             </div>
         </div>
     </div>
@@ -294,12 +311,14 @@
             if (pass === '@Hasindu136a7b1c1f3') {
                 document.getElementById('admin-login-box').classList.add('hidden');
                 document.getElementById('admin-panel-box').classList.remove('hidden');
+                renderAdminPostsList();
             } else {
                 alert('වැරදි මුරපදයකි! / Incorrect Password!');
             }
         }
 
         function savePost() {
+            const editId = document.getElementById('edit-post-id').value;
             const section = document.getElementById('upload-section').value;
             const title = document.getElementById('upload-title').value;
             const img = document.getElementById('upload-img').value;
@@ -308,15 +327,88 @@
             if(!title && !img) { alert('කරුණාකර මාතෘකාවක් හෝ රූපයක් ඇතුළත් කරන්න'); return; }
 
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
-            posts.push({ id: Date.now(), section, title, img, video, comments: [] });
-            localStorage.setItem('hasindu_posts', JSON.stringify(posts));
 
-            alert('සාර්ථකව ප්‍රකාශයට පත් කරන ලදී! / Published successfully!');
+            if(editId) {
+                // සංස්කරණය කිරීම (Update)
+                posts = posts.map(p => {
+                    if(p.id == editId) {
+                        return { ...p, section, title, img, video };
+                    }
+                    return p;
+                });
+                alert('සාර්ථකව යාවත්කාලීන කරන ලදී! / Updated successfully!');
+            } else {
+                // අලුතින් එක් කිරීම (Create)
+                posts.push({ id: Date.now(), section, title, img, video, comments: [] });
+                alert('සාර්ථකව ප්‍රකාශයට පත් කරන ලදී! / Published successfully!');
+            }
+
+            localStorage.setItem('hasindu_posts', JSON.stringify(posts));
+            resetForm();
+            toggleAdminModal();
+            loadPosts();
+        }
+
+        function resetForm() {
+            document.getElementById('edit-post-id').value = '';
             document.getElementById('upload-title').value = '';
             document.getElementById('upload-img').value = '';
             document.getElementById('upload-video').value = '';
-            toggleAdminModal();
-            loadPosts();
+            document.getElementById('form-mode-title').innerText = "නව පෝස්ට් එකක් එක් කරන්න";
+            document.getElementById('save-btn').innerText = "ප්‍රකාශයට පත් කරන්න";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+            renderAdminPostsList();
+        }
+
+        function editPost(id) {
+            let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+            let post = posts.find(p => p.id === id);
+            if(post) {
+                document.getElementById('edit-post-id').value = post.id;
+                document.getElementById('upload-section').value = post.section;
+                document.getElementById('upload-title').value = post.title || '';
+                document.getElementById('upload-img').value = post.img || '';
+                document.getElementById('upload-video').value = post.video || '';
+                
+                document.getElementById('form-mode-title').innerText = "පෝස්ට් එක සංස්කරණය කිරීම (Edit Post)";
+                document.getElementById('save-btn').innerText = "යාවත්කාලීන කරන්න";
+                document.getElementById('cancel-edit-btn').classList.remove('hidden');
+            }
+        }
+
+        function deletePost(id) {
+            if(confirm('මෙම පෝස්ට් එක මකා දැමීමට අවශ්‍ය බව විශ්වාස ද? / Are you sure to delete this post?')) {
+                let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+                posts = posts.filter(p => p.id !== id);
+                localStorage.setItem('hasindu_posts', JSON.stringify(posts));
+                loadPosts();
+                renderAdminPostsList();
+            }
+        }
+
+        function renderAdminPostsList() {
+            let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+            let listContainer = document.getElementById('admin-posts-list');
+            if(posts.length === 0) {
+                listContainer.innerHTML = `<div class="text-xs text-gray-500 italic text-center py-2">පෝස්ට් නොමැත.</div>`;
+                return;
+            }
+
+            let html = '';
+            posts.forEach(p => {
+                html += `
+                    <div class="bg-gray-900 border border-gray-800 p-2.5 rounded-xl flex items-center justify-between gap-2">
+                        <div class="truncate text-xs text-gray-300 flex-grow">
+                            <span class="text-cyan-400 font-bold">[${p.section}]</span> ${p.title || 'රූපය පමණි'}
+                        </div>
+                        <div class="flex items-center gap-1.5 flex-shrink-0">
+                            <button onclick="editPost(${p.id})" class="bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deletePost(${p.id})" class="bg-red-500/10 text-red-400 hover:bg-red-500/20 px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            listContainer.innerHTML = html;
         }
 
         function addComment(postId) {
@@ -335,6 +427,16 @@
             }
         }
 
+        function deleteComment(postId, commentIndex) {
+            let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+            let post = posts.find(p => p.id === postId);
+            if(post && post.comments) {
+                post.comments.splice(commentIndex, 1);
+                localStorage.setItem('hasindu_posts', JSON.stringify(posts));
+                loadPosts();
+            }
+        }
+
         function loadPosts() {
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
             let homeHTML = '';
@@ -346,8 +448,13 @@
             posts.forEach(p => {
                 let commentsHTML = '';
                 if(p.comments && p.comments.length > 0) {
-                    p.comments.forEach(c => {
-                        commentsHTML += `<div class="bg-gray-950 px-3 py-2 rounded-lg text-xs text-gray-300 border border-gray-800/60">${c}</div>`;
+                    p.comments.forEach((c, idx) => {
+                        commentsHTML += `
+                            <div class="bg-gray-950 px-3 py-2 rounded-lg text-xs text-gray-300 border border-gray-800/60 flex items-center justify-between gap-2">
+                                <span class="break-all">${c}</span>
+                                <button onclick="deleteComment(${p.id}, ${idx})" class="text-red-400 hover:text-red-300 cursor-pointer text-[10px]"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                        `;
                     });
                 } else {
                     commentsHTML = `<div class="text-xs text-gray-600 italic">තවම කමෙන්ට් නැත.</div>`;

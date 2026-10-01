@@ -93,7 +93,7 @@
                 <!-- වම් පැත්ත: ප්‍රධාන පෝස්ට් සහ කමෙන්ට් අංශය -->
                 <div class="lg:col-span-2 space-y-6">
                     <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                        <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">Hot News</span></h2>
+                        <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">මුල් පිටුව</span></h2>
                     </div>
                     <div id="home-posts-container" class="space-y-6">
                         <div class="home-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම පෝස්ට් එකතු කර නැත.</div>
@@ -102,18 +102,16 @@
 
                 <!-- දකුණු පැත්ත: මුල් පිටුවේ දකුණු පෙට්ටිය (Stream Side Container) -->
                 <div class="space-y-6">
-                    <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80 space-y-2"
-                        <!-- bg-black දමා object-contain සහ h-auto භාවිත කරන්න -->
-                      <div class="w-full bg-black rounded-lg overflow-hidden flex items-center justify-center">
-        <img src="..." class="w-full h-auto object-contain rounded-lg">
-    </div>
-</div>
+                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[520px] sticky top-24">
+                        <h3 class="text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"><i class="fa-solid fa-bolt"></i></h3>
+                        <div id="stream-side-container" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
+                            <div class="text-xs text-gray-600 italic text-center py-4">යාවත්කාලීන කිරීම් නොමැත.</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- කොටස 1: සජීවී විකාශය (Full Screen Video Player) -->
+            <!-- කොටස 1: සජීවී විකාශය -->
             <div id="section-live" class="hidden space-y-6 max-w-4xl mx-auto">
                 <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl">
                     <div class="relative aspect-video bg-black flex items-center justify-center">
@@ -169,7 +167,6 @@
             <div id="admin-panel-box" class="hidden space-y-6">
                 <h3 class="text-xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-upload"></i> මාධ්‍ය කළමනාකරණය (Manage Posts)</h3>
                 
-                <!-- පෝස්ට් එකතු කිරීමේ/සංස්කරණය කිරීමේ පෝරමය -->
                 <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-4">
                     <input type="hidden" id="edit-post-id" value="">
                     <h4 id="form-mode-title" class="text-sm font-bold text-sky-400">නව පෝස්ට් එකක් එක් කරන්න</h4>
@@ -200,12 +197,9 @@
                     </div>
                 </div>
 
-                <!-- පවතින සියලුම පෝස්ට් කළමනාකරණය (Manage List) -->
                 <div>
                     <h4 class="text-sm font-bold text-gray-300 mb-2">පවතින පෝස්ට් ලැයිස්තුව (Manage / Delete Posts)</h4>
-                    <div id="admin-posts-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                        <!-- පාලක පැනලයේ පෝස්ට් ලැයිස්තුව මෙහි පෙන්වයි -->
-                    </div>
+                    <div id="admin-posts-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
                 </div>
             </div>
         </div>
@@ -266,7 +260,6 @@
 
         function applyLanguage() {
             const t = translations[currentLang];
-            
             document.querySelector('[data-i18n="nav-home"]').innerText = t.navHome;
             document.querySelector('[data-i18n="nav-live"]').innerText = t.navLive;
             document.querySelector('[data-i18n="nav-news"]').innerText = t.navNews;
@@ -295,7 +288,6 @@
             document.getElementById('btn-' + tab).className = "text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1.5 cursor-pointer font-bold";
         }
 
-        // කෙටිමඟ: පරිපාලක පැනලය සඳහා Ctrl + M
         document.addEventListener('keydown', function(event) {
             if (event.ctrlKey && event.key.toLowerCase() === 'm') {
                 event.preventDefault();
@@ -331,18 +323,16 @@
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
 
             if(editId) {
-                // සංස්කරණය කිරීම (Update)
                 posts = posts.map(p => {
                     if(p.id == editId) {
                         return { ...p, section, title, img, video };
                     }
                     return p;
                 });
-                alert('සාර්ථකව යාවත්කාලීන කරන ලදී! / Updated successfully!');
+                alert('සාර්ථකව යාවත්කාලීන කරන ලදී!');
             } else {
-                // අලුතින් එක් කිරීම (Create)
                 posts.push({ id: Date.now(), section, title, img, video, comments: [] });
-                alert('සාර්ථකව ප්‍රකාශයට පත් කරන ලදී! / Published successfully!');
+                alert('සාර්ථකව ප්‍රකාශයට පත් කරන ලදී!');
             }
 
             localStorage.setItem('hasindu_posts', JSON.stringify(posts));
@@ -379,7 +369,7 @@
         }
 
         function deletePost(id) {
-            if(confirm('මෙම පෝස්ට් එක මකා දැමීමට අවශ්‍ය බව විශ්වාස ද? / Are you sure to delete this post?')) {
+            if(confirm('මෙම පෝස්ට් එක මකා දැමීමට අවශ්‍ය බව විශ්වාස ද?')) {
                 let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
                 posts = posts.filter(p => p.id !== id);
                 localStorage.setItem('hasindu_posts', JSON.stringify(posts));
@@ -399,13 +389,17 @@
             let html = '';
             posts.forEach(p => {
                 html += `
-                   let sideCard = `
-    <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80 space-y-2">
-        ${p.img ? `<div class="w-full bg-black flex items-center justify-center rounded-lg overflow-hidden"><img src="${p.img}" class="w-full h-auto object-contain rounded-lg" alt="Side Image"></div>` : ''}
-        <h4 class="font-bold text-sm text-white">${p.title}</h4>
-        ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> ${t.watchBtn}</a>` : ''}
-    </div>
-`;
+                    <div class="bg-gray-900 border border-gray-800 p-2.5 rounded-xl flex items-center justify-between gap-2">
+                        <div class="truncate text-xs text-gray-300 flex-grow">
+                            <span class="text-cyan-400 font-bold">[${p.section}]</span> ${p.title || 'රූපය පමණි'}
+                        </div>
+                        <div class="flex items-center gap-1.5 flex-shrink-0">
+                            <button onclick="editPost(${p.id})" class="bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deletePost(${p.id})" class="bg-red-500/10 text-red-400 hover:bg-red-500/20 px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
             listContainer.innerHTML = html;
         }
 
@@ -458,13 +452,13 @@
                     commentsHTML = `<div class="text-xs text-gray-600 italic">තවම කමෙන්ට් නැත.</div>`;
                 }
 
+                // මුල් පිටුවේ ප්‍රධාන පෝස්ට් (මෙතන පින්තූරය සම්පූර්ණයෙන්ම පෙනීමට object-contain දමා ඇත)
                 let homeCard = `
                     <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-xl p-5 space-y-4">
-                        ${p.img ? `<img src="${p.img}" class="w-full h-auto max-h-[450px] object-cover rounded-xl" alt="Home Post Image">` : ''}
+                        ${p.img ? `<div class="w-full bg-black/40 flex items-center justify-center rounded-xl overflow-hidden"><img src="${p.img}" class="w-full h-auto max-h-[450px] object-contain rounded-xl" alt="Home Post Image"></div>` : ''}
                         ${p.title ? `<p class="text-gray-200 text-base font-medium">${p.title}</p>` : ''}
                         ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3 py-2 rounded-xl inline-flex items-center gap-1.5 font-semibold hover:bg-cyan-500/20"><i class="fa-solid fa-play"></i> ${t.watchBtn}</a>` : ''}
                         
-                        <!-- කමෙන්ට් අංශය -->
                         <div class="border-t border-gray-800 pt-3 space-y-3">
                             <div class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Comments</div>
                             <div class="space-y-2 max-h-40 overflow-y-auto pr-1">
@@ -478,9 +472,10 @@
                     </div>
                 `;
 
+                // ප්‍රවෘත්ති සහ ටෙලි නාට්‍ය කාඩ්පත්
                 let card = `
                     <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                        ${p.img ? `<img src="${p.img}" class="w-full h-48 object-cover" alt="Post Image">` : ''}
+                        ${p.img ? `<div class="w-full bg-black/40 flex items-center justify-center overflow-hidden"><img src="${p.img}" class="w-full h-auto max-h-[300px] object-contain" alt="Post Image"></div>` : ''}
                         <div class="p-4">
                             <h3 class="font-bold text-lg mb-2 text-white">${p.title}</h3>
                             ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3 py-2 rounded-xl inline-flex items-center gap-1.5 mt-2 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> ${t.watchBtn}</a>` : ''}
@@ -488,9 +483,10 @@
                     </div>
                 `;
 
+                // මුල් පිටුවේ දකුණු පැත්තේ පෙට්ටිය (Stream Side Container - මෙහිද පින්තූරය සම්පූර්ණයෙන් පෙනෙන සේ සකසා ඇත)
                 let sideCard = `
                     <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80 space-y-2">
-                        ${p.img ? `<img src="${p.img}" class="w-full h-32 object-cover rounded-lg" alt="Side Image">` : ''}
+                        ${p.img ? `<div class="w-full bg-black/40 flex items-center justify-center rounded-lg overflow-hidden"><img src="${p.img}" class="w-full h-auto max-h-[250px] object-contain rounded-lg" alt="Side Image"></div>` : ''}
                         <h4 class="font-bold text-sm text-white">${p.title}</h4>
                         ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2.5 py-1.5 rounded-lg inline-flex items-center gap-1 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> ${t.watchBtn}</a>` : ''}
                     </div>
@@ -508,7 +504,6 @@
             if(teleHTML) document.getElementById('teledrama-container').innerHTML = teleHTML;
         }
 
-        // ගිනිකෙළි පසුබිම් ප්‍රයෝග (Fireworks effects)
         function createFirework(frameElement, particleCount, distanceMax) {
             if (!frameElement) return;
             const rect = frameElement.getBoundingClientRect();

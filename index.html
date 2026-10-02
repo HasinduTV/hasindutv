@@ -42,7 +42,7 @@
             100% { transform: translateY(160px); opacity: 0; }
         }
 
-        /* සජීවී විකාශය දැනුම්දීමේ කොටස සඳහා CSS */
+        /* සජීවී විකාශය දැනුම්දීමේ කොටස සඳහා CSS (හිරවීම් මඟහරවා ඇත) */
         .live-ticker-bar {
             background-color: #ffffff;
             color: #000000;
@@ -62,12 +62,13 @@
             will-change: transform;
             font-weight: bold;
             font-size: 16px;
-            /* Animation එක 20 තත්පරයකට වරක් ක්‍රියාත්මක වන සේ සකසා ඇත */
-            animation: tickerAnimation 15s linear infinite;
-            animation-play-state: paused; /* මුලින් නවතා තබා JS හරහා පාලනය කරයි */
+            white-space: nowrap;
+            /* Pure CSS මඟින් සජීවීකරණය සහ තත්පර 20 ක විරාමය පාලනය වේ */
+            animation: tickerAnimation 35s linear infinite;
         }
         @keyframes tickerAnimation {
             0% { transform: translateX(100vw); }
+            40% { transform: translateX(-100%); }
             100% { transform: translateX(-100%); }
         }
     </style>
@@ -323,31 +324,6 @@
                 tickerText: "Hasindu TV සජීවී විකාශය ලඟදීම බලාපොරොත්තු වන්න &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hasindu TV live broadcast coming soon"
             }
         };
-
-        // තත්පර 20 කට වරක් Ticker animation එක පාලනය කිරීමේ වැඩසටහන
-        function startTickerLoop() {
-            const ticker = document.getElementById('ticker-text');
-            if(!ticker) return;
-
-            function runTicker() {
-                ticker.style.animationPlayState = 'running';
-                // Animation එක අවසන් වීමට ගතවන කාලය (තත්පර 15)
-                setTimeout(() => {
-                    ticker.style.animationPlayState = 'paused';
-                    
-                    // ඊළඟ වාරය සඳහා තවත් තත්පර 20 ක විරාමයක් (Delay) ලබා දීම
-                    setTimeout(runTicker, 20000); 
-                }, 15000);
-            }
-
-            // මුල් වරට තත්පර 1 කින් ආරම්භ කිරීම
-            setTimeout(runTicker, 1000);
-        }
-
-        // Page load වූ පසු Ticker loop එක ක්‍රියාත්මක කිරීම
-        window.addEventListener('DOMContentLoaded', () => {
-            startTickerLoop();
-        });
 
         function selectLanguage(lang) {
             currentLang = lang;

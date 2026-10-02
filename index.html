@@ -36,8 +36,8 @@
             100% { transform: translateY(160px); opacity: 0; }
         }
 
-        /* Ticker තීරුව සඳහා CSS (වමේ සිට දකුණට ක්‍රියාත්මක වන සේ) */
-        .live-ticker-bar }
+        /* Ticker තීරුව සඳහා CSS (දකුණ‍ෙ සිට වමට ක්‍රියාත්මක වන සේ) */
+        .live-ticker-bar {
             background-color: transparent; /* මුලින් තීරුව පෙනෙන්නේ නැත */
             color: #000000;
             overflow: hidden;
@@ -50,19 +50,19 @@
             transition: background-color 0.3s ease;
         }
         /* Ticker එක ක්‍රියාත්මක වන විට පමණක් සුදු පසුබිම සහ දාරය පෙන්වීම */
-        .live-ticker-bar.active }
+        .live-ticker-bar.active {
             background-color: #ffffff;
             border-bottom: 1px solid #e5e7eb;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        .live-ticker-content {
+        .live-ticker-content }
             display: inline-block;
             position: absolute;
             will-change: transform;
             font-weight: bold;
             font-size: 16px;
             white-space: nowrap;
-            transform: translateX(-100%); /* මුලින් වම් පසින් පිටත රඳවා ඇත */
+            transform: translateX(-100%); /* මුලින් දකුණු පසින් පිටත රඳවා ඇත */
         }
     </style>
 </head>

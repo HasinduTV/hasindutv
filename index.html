@@ -69,6 +69,70 @@
             99.99% { opacity: 0; }
             100% { opacity: 1; }
         }
+
+        /* දින දර්ශන විජට් (Calendar Widget Style) */
+        .custom-calendar-box {
+            width: 65px;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #d1d5db;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .calendar-rings {
+            position: absolute;
+            top: -4px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 12px;
+            z-index: 10;
+        }
+        .calendar-ring-item {
+            width: 6px;
+            height: 12px;
+            background: linear-gradient(to bottom, #9ca3af, #f3f4f6, #6b7280);
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .calendar-header {
+            background: #dc2626;
+            color: #ffffff;
+            width: 100%;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 5px 0 3px 0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .calendar-body {
+            background: #ffffff;
+            color: #111827;
+            width: 100%;
+            text-align: center;
+            padding: 4px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calendar-day-num {
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1;
+            color: #1f2937;
+        }
+        .calendar-full-date {
+            font-size: 7.5px;
+            color: #6b7280;
+            font-weight: 700;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
     </style>
 </head>
 <body class="bg-[#0b0f19] text-white font-sans min-h-screen">
@@ -153,21 +217,38 @@
         <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
             
             <!-- කොටස 0: මුල් පිටුව -->
-            <div id="section-home" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                        <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">දවසේ පුවත</span></h2>
-                    </div>
-                    <div id="home-posts-container" class="space-y-6">
-                        <div class="home-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම පෝස්ට් එකතු කර නැත.</div>
+            <div id="section-home" class="space-y-6">
+                <!-- මුල් පිටුවේ වම් කෙළවරේ කැලෙන්ඩරය පෙන්වන කොටස -->
+                <div class="flex items-center justify-start">
+                    <div class="custom-calendar-box">
+                        <div class="calendar-rings">
+                            <div class="calendar-ring-item"></div>
+                            <div class="calendar-ring-item"></div>
+                        </div>
+                        <div id="cal-month-home" class="calendar-header">OCT</div>
+                        <div class="calendar-body">
+                            <div id="cal-full-date-home" class="calendar-full-date">2026.Oct.02</div>
+                            <div id="cal-day-home" class="calendar-day-num">02</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="space-y-6">
-                    <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[520px] sticky top-36">
-                        <h3 class="text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"><i class="fa-solid fa-bolt"></i></h3>
-                        <div id="stream-side-container" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
-                            <div class="text-xs text-gray-600 italic text-center py-4">යාවත්කාලීන කිරීම් නොමැත.</div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                            <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-house"></i> <span data-i18n="nav-home">දවසේ පුවත</span></h2>
+                        </div>
+                        <div id="home-posts-container" class="space-y-6">
+                            <div class="home-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම පෝස්ට් එකතු කර නැත.</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gray-900 border border-gray-800/80 rounded-2xl p-4 shadow-xl flex flex-col h-[520px] sticky top-36">
+                            <h3 class="text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"><i class="fa-solid fa-bolt"></i></h3>
+                            <div id="stream-side-container" class="flex-grow overflow-y-auto space-y-3 pr-1 text-sm text-gray-300">
+                                <div class="text-xs text-gray-600 italic text-center py-4">යාවත්කාලීන කිරීම් නොමැත.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -188,6 +269,21 @@
 
             <!-- කොටස 2: ප්‍රවෘත්ති -->
             <div id="section-news" class="hidden space-y-6">
+                <!-- ප්‍රවෘත්ති පිටුවේ වම් කෙළවරේ කැලෙන්ඩරය පෙන්වන කොටස -->
+                <div class="flex items-center justify-start">
+                    <div class="custom-calendar-box">
+                        <div class="calendar-rings">
+                            <div class="calendar-ring-item"></div>
+                            <div class="calendar-ring-item"></div>
+                        </div>
+                        <div id="cal-month-news" class="calendar-header">OCT</div>
+                        <div class="calendar-body">
+                            <div id="cal-full-date-news" class="calendar-full-date">2026.Oct.02</div>
+                            <div id="cal-day-news" class="calendar-day-num">02</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
                     <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> <span data-i18n="nav-news">ප්‍රවෘත්ති</span></h2>
                 </div>
@@ -320,6 +416,36 @@
                 tickerText: "Hasindu TV සජීවී විකාශය ලගදිම බලාපොරොත්තු වන්න &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hasindu TV live broadcast coming soon"
             }
         };
+
+        // දින පෙන්වීම සහ රාත්‍රී 12 ට ඔටෝ අප්ඩේට් වීම සඳහා වන Function එක
+        function updateCalendar() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const monthNamesShort = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            const monthNamesFull = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            const monthShort = monthNamesShort[now.getMonth()];
+            const monthFull = monthNamesFull[now.getMonth()];
+            const dayNum = String(now.getDate()).padStart(2, '0');
+            const monthNum = String(now.getMonth() + 1).padStart(2, '0');
+
+            const fullDateStr = `${year}.${monthFull}.${dayNum}`;
+
+            // Home සහ News page වලට දත්ත යෙදීම
+            ['home', 'news'].forEach(page => {
+                const monthEl = document.getElementById(`cal-month-${page}`);
+                const dayEl = document.getElementById(`cal-day-${page}`);
+                const fullDateEl = document.getElementById(`cal-full-date-${page}`);
+
+                if (monthEl) monthEl.innerText = monthShort;
+                if (dayEl) dayEl.innerText = dayNum;
+                if (fullDateEl) fullDateEl.innerText = fullDateStr;
+            });
+        }
+
+        // පේජ් එක ලෝඩ් වූ වහාම සහ සෑම විනාඩියකට වරක් දින මාරු වීම පරීක්ෂා කිරීම (රාත්‍රී 12 ට ස්වයංක්‍රීයව මාරු වේ)
+        updateCalendar();
+        setInterval(updateCalendar, 60000);
 
         function selectLanguage(lang) {
             currentLang = lang;
@@ -630,6 +756,7 @@
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
             
+            3
             const size = Math.random() * 5 + 3;
             snowflake.style.width = size + 'px';
             snowflake.style.height = size + 'px';

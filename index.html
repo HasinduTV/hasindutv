@@ -36,7 +36,7 @@
             100% { transform: translateY(160px); opacity: 0; }
         }
 
-        /* නව Ticker තීරුව සඳහා CSS (දකුණේ සිට වමට ගමන් කරන සේ) */
+        /* නව Ticker තීරුව සඳහා CSS (තත්පර 20 ගමන සහ තත්පර 8ක අතුරුදහන් වීමේ විරාමය) */
         .live-ticker-bar {
             background-color: #ffffff;
             border-bottom: 1px solid #e5e7eb;
@@ -52,18 +52,32 @@
         }
         .live-ticker-content {
             display: inline-block;
-            padding-left: 100%; /* පිටුවට ඇතුළුවන මොහොතේ සිටම දකුණු කෙළවරින්ම පටන් ගැනීමට */
-            animation: ticker 25s linear infinite;
             font-weight: bold;
             font-size: 16px;
             white-space: nowrap;
+            /* තත්පර 20ක ගමන + තත්පර 8ක විරාමය එකතු කර ඇත */
+            animation: tickerWithPause 28s linear infinite;
         }
-        @keyframes ticker {
+        @keyframes tickerWithPause {
             0% {
-                transform: translate3d(0, 0, 0);
+                transform: translateX(100vw);
+                opacity: 1;
+            }
+            71.42% { /* 20s / 28s = 71.42% (දකුණේ සිට වමට ගොස් අවසන් වන මොහොත) */
+                transform: translateX(-100%);
+                opacity: 1;
+            }
+            71.43% { /* වම් කෙළවරට ගිය වහාම අතුරුදහන් වීම (Invisible) */
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            99.99% { /* තත්පර 8ක විරාම කාලය පුරාම අතුරුදහන්වී තිබීම */
+                transform: translateX(100vw);
+                opacity: 0;
             }
             100% {
-                transform: translate3d(-100%, 0, 0);
+                transform: translateX(100vw);
+                opacity: 1;
             }
         }
     </style>
@@ -139,7 +153,7 @@
             </div>
         </nav>
 
-        <!-- Live Ticker Bar (දකුණේ සිට වමට ගමන් කරන තීරුව) -->
+        <!-- Live Ticker Bar (තත්පර 20ක ගමන සහ තත්පර 8ක අතුරුදහන් වීමේ විරාමය සහිතව) -->
         <div id="live-ticker-bar" class="live-ticker-bar">
             <div id="ticker-text" class="live-ticker-content">
                 Hasindu TV සජීවී විකාශය ලගදිම බලාපොරොත්තු වන්න &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hasindu TV live broadcast coming soon

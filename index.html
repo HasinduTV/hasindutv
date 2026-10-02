@@ -36,7 +36,6 @@
             100% { transform: translateY(160px); opacity: 0; }
         }
 
-        /* Ticker කොටුව සහ පෙළ සම්පූර්ණයෙන්ම අතුරුදහන් වී විරාමය ලබා දෙන CSS */
         .live-ticker-bar {
             background-color: #ffffff;
             border-bottom: 1px solid #e5e7eb;
@@ -144,10 +143,10 @@
                 <img src="678925162_122123155977167027_6693861555150019422_n-removebg-preview.png" alt="Hasindu TV Welcome Photo">
             </div>
             
-            <h1 id="welcome-title" class="text-4xl md:text-6xl font-black mb-4 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 drop-shadow-[0_5px_15px_rgba(56,189,248,0.4)] animate-pulse">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 drop-shadow-[0_5px_15px_rgba(56,189,248,0.4)] animate-pulse">
                 Hasindu TV
             </h1>
-            <p id="welcome-subtitle" class="text-gray-300 text-sm md:text-base mb-8 font-medium">Hasindu TV නිල වෙබ් අඩවියට සාදරයෙන් පිළිගනිමු! කරුණාකර ඔබේ භාෂාව තෝරන්න
+            <p class="text-gray-300 text-sm md:text-base mb-8 font-medium">Hasindu TV නිල වෙබ් අඩවියට සාදරයෙන් පිළිගනිමු! කරුණාකර ඔබේ භාෂාව තෝරන්න
                 Please select your language:</p>
 
             <div class="flex items-center justify-center gap-6">
@@ -227,7 +226,7 @@
                         </div>
                         <div id="cal-month-home" class="calendar-header">OCT</div>
                         <div class="calendar-body">
-                            <div id="cal-full-date-home" class="calendar-full-date">2026.Oct.02</div>
+                            <div id="cal-full-date-home" class="calendar-full-date">2026.October.02</div>
                             <div id="cal-day-home" class="calendar-day-num">02</div>
                         </div>
                     </div>
@@ -269,26 +268,12 @@
 
             <!-- කොටස 2: ප්‍රවෘත්ති -->
             <div id="section-news" class="hidden space-y-6">
-                <!-- ප්‍රවෘත්ති පිටුවේ වම් කෙළවරේ කැලෙන්ඩරය පෙන්වන කොටස -->
-                <div class="flex items-center justify-start">
-                    <div class="custom-calendar-box">
-                        <div class="calendar-rings">
-                            <div class="calendar-ring-item"></div>
-                            <div class="calendar-ring-item"></div>
-                        </div>
-                        <div id="cal-month-news" class="calendar-header">OCT</div>
-                        <div class="calendar-body">
-                            <div id="cal-full-date-news" class="calendar-full-date">2026.Oct.02</div>
-                            <div id="cal-day-news" class="calendar-day-num">02</div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                    <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> <span data-i18n="nav-news">ප්‍රවෘත්ති</span></h2>
+                    <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> <span data-i18n="nav-news">ප්‍රවෘත්ති (දින අනුව පිළිවෙළට)</span></h2>
                 </div>
-                <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="news-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500 col-span-full">තවම ප්‍රවෘත්ති එකතු කර නැත.</div>
+                <!-- ප්‍රවෘත්ති පෝස්ට් දින අනුව වෙන් වී මෙහි පෙන්වනු ලැබේ -->
+                <div id="news-container" class="space-y-8">
+                    <div class="news-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම ප්‍රවෘත්ති එකතු කර නැත.</div>
                 </div>
             </div>
 
@@ -427,23 +412,18 @@
             const monthShort = monthNamesShort[now.getMonth()];
             const monthFull = monthNamesFull[now.getMonth()];
             const dayNum = String(now.getDate()).padStart(2, '0');
-            const monthNum = String(now.getMonth() + 1).padStart(2, '0');
 
             const fullDateStr = `${year}.${monthFull}.${dayNum}`;
 
-            // Home සහ News page වලට දත්ත යෙදීම
-            ['home', 'news'].forEach(page => {
-                const monthEl = document.getElementById(`cal-month-${page}`);
-                const dayEl = document.getElementById(`cal-day-${page}`);
-                const fullDateEl = document.getElementById(`cal-full-date-${page}`);
+            const monthEl = document.getElementById('cal-month-home');
+            const dayEl = document.getElementById('cal-day-home');
+            const fullDateEl = document.getElementById('cal-full-date-home');
 
-                if (monthEl) monthEl.innerText = monthShort;
-                if (dayEl) dayEl.innerText = dayNum;
-                if (fullDateEl) fullDateEl.innerText = fullDateStr;
-            });
+            if (monthEl) monthEl.innerText = monthShort;
+            if (dayEl) dayEl.innerText = dayNum;
+            if (fullDateEl) fullDateEl.innerText = fullDateStr;
         }
 
-        // පේජ් එක ලෝඩ් වූ වහාම සහ සෑම විනාඩියකට වරක් දින මාරු වීම පරීක්ෂා කිරීම (රාත්‍රී 12 ට ස්වයංක්‍රීයව මාරු වේ)
         updateCalendar();
         setInterval(updateCalendar, 60000);
 
@@ -538,6 +518,14 @@
 
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
 
+            const now = new Date();
+            const postDateObj = {
+                year: now.getFullYear(),
+                monthShort: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][now.getMonth()],
+                monthFull: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][now.getMonth()],
+                day: String(now.getDate()).padStart(2, '0')
+            };
+
             if(editId) {
                 posts = posts.map(p => {
                     if(p.id == editId) {
@@ -547,7 +535,8 @@
                 });
                 alert('සාර්ථකව යාවත්කාලීන කරන ලදී!');
             } else {
-                posts.push({ id: Date.now(), section, title, img, video, comments: [] });
+                // නව පෝස්ට් එකට ස්වයංක්‍‍රීයව පෝස්ට් කළ දිනය ඇතුළත් වේ
+                posts.push({ id: Date.now(), section, title, img, video, dateObj: postDateObj, comments: [] });
                 localStorage.removeItem('hasindu_news_ok');
                 alert('සාර්ථකව ප්‍රකාශයට පත් කරන ලදී!');
             }
@@ -648,6 +637,10 @@
 
         function loadPosts() {
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
+            
+            // නවතම පෝස්ට් ඉස්සෙල්ලම පෙන්වන ලෙස සකස් කිරීම
+            posts.sort((a, b) => b.id - a.id);
+
             let homeHTML = '';
             let sideHTML = '';
             let newsHTML = '';
@@ -655,6 +648,64 @@
             let otherHTML = '';
             const t = translations[currentLang];
 
+            // පුවත් (News) අංශය දින අනුව කාණ්ඩගත කිරීම (Group posts by date)
+            let newsByDate = {};
+            posts.filter(p => p.section === 'news').forEach(p => {
+                let dObj = p.dateObj || { year: '2026', monthShort: 'OCT', monthFull: 'October', day: '02' };
+                let dateKey = `${dObj.year}.${dObj.monthFull}.${dObj.day}`;
+                if (!newsByDate[dateKey]) {
+                    newsByDate[dateKey] = {
+                        monthShort: dObj.monthShort,
+                        fullDateStr: dateKey,
+                        dayNum: dObj.day,
+                        items: []
+                    };
+                }
+                newsByDate[dateKey].items.push(p);
+            });
+
+            // News HTML එක සැකසීම (කැලෙන්ඩර් විජට් එක වම් පසින් දිනය සමඟ පෙන්වීම)
+            if (Object.keys(newsByDate).length > 0) {
+                for (let dateKey in newsByDate) {
+                    let group = newsByDate[dateKey];
+                    
+                    newsHTML += `
+                        <div class="space-y-4 pt-4 border-t border-gray-800/60 first:border-0">
+                            <div class="flex items-center justify-start">
+                                <div class="custom-calendar-box">
+                                    <div class="calendar-rings">
+                                        <div class="calendar-ring-item"></div>
+                                        <div class="calendar-ring-item"></div>
+                                    </div>
+                                    <div class="calendar-header">${group.monthShort}</div>
+                                    <div class="calendar-body">
+                                        <div class="calendar-full-date">${group.fullDateStr}</div>
+                                        <div class="calendar-day-num">${group.dayNum}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    `;
+
+                    group.items.forEach(p => {
+                        newsHTML += `
+                            <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                                ${p.img ? `<div class="w-full bg-black/40 flex items-center justify-center overflow-hidden"><img src="${p.img}" class="w-full h-auto max-h-[300px] object-contain" alt="Post Image"></div>` : ''}
+                                <div class="p-4 space-y-2">
+                                    ${p.title ? `<h3 class="font-bold text-lg text-white">${p.title}</h3>` : ''}
+                                    ${p.video ? `<a href="${p.video}" target="_blank" class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3 py-2 rounded-xl inline-flex items-center gap-1.5 mt-2 hover:bg-cyan-500/20 font-semibold"><i class="fa-solid fa-play"></i> ${t.watchBtn}</a>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    newsHTML += `</div></div>`;
+                }
+            } else {
+                newsHTML = `<div class="news-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම ප්‍රවෘත්ති එකතු කර නැත.</div>`;
+            }
+
+            // අනෙකුත් අංශ සඳහා පෝස්ට් පිරවීම
             posts.forEach(p => {
                 let commentsHTML = '';
                 if(p.comments && p.comments.length > 0) {
@@ -709,7 +760,6 @@
 
                 if(p.section === 'home') homeHTML += homeCard;
                 if(p.section === 'stream-side') sideHTML += sideCard;
-                if(p.section === 'news') newsHTML += card;
                 if(p.section === 'teledrama') teleHTML += card;
                 if(p.section === 'other') otherHTML += card;
             });
@@ -756,7 +806,6 @@
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
             
-            3
             const size = Math.random() * 5 + 3;
             snowflake.style.width = size + 'px';
             snowflake.style.height = size + 'px';

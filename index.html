@@ -36,7 +36,7 @@
             100% { transform: translateY(160px); opacity: 0; }
         }
 
-        /* නව Ticker තීරුව සඳහා CSS (තත්පර 20 ගමන සහ නිවැරදිව අතුරුදහන් වීමේ විරාමය) */
+        /* Ticker කොටුව සහ පෙළ සම්පූර්ණයෙන්ම අතුරුදහන් වී විරාමය ලබා දෙන CSS */
         .live-ticker-bar {
             background-color: #ffffff;
             border-bottom: 1px solid #e5e7eb;
@@ -49,36 +49,25 @@
             height: 45px;
             display: flex;
             align-items: center;
+            animation: barWithPause 28s linear infinite;
         }
         .live-ticker-content {
             display: inline-block;
             font-weight: bold;
             font-size: 16px;
             white-space: nowrap;
-            /* සම්පූර්ණ චක්‍රය: තත්පර 20ක ගමන + තත්පර 8ක විරාමය = මුළු තත්පර 28යි */
-            animation: tickerWithPause 28s linear infinite;
+            animation: tickerMove 20s linear infinite;
         }
-        @keyframes tickerWithPause {
-            0% {
-                transform: translateX(100vw);
-                opacity: 1;
-            }
-            71.42% { /* තත්පර 20ක් අවසන් වන මොහොත (වම් කෙළවරට ළඟා වීම) */
-                transform: translateX(-100%);
-                opacity: 1;
-            }
-            71.43% { /* වම් කෙළවරට ගිය වහාම සම්පූර්ණයෙන්ම අතුරුදහන් වීම (Invisible) */
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            99.99% { /* ඉතිරි තත්පර 8ක විරාම කාලය පුරාම සම්පූර්ණයෙන්ම අතුරුදහන්වී තිබීම */
-                transform: translateX(100vw);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(100vw);
-                opacity: 1;
-            }
+        @keyframes tickerMove {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes barWithPause {
+            0% { opacity: 1; }
+            71.42% { opacity: 1; }
+            71.43% { opacity: 0; }
+            99.99% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
@@ -661,4 +650,3 @@
 
 </body>
 </html>
-                

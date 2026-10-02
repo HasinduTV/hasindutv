@@ -41,6 +41,35 @@
             20% { opacity: 0.8; }
             100% { transform: translateY(160px); opacity: 0; }
         }
+
+        /* සජීවී විකාශය දැනුම්දීමේ කොටස සඳහා CSS */
+        .live-ticker-bar {
+            background-color: #ffffff;
+            color: #000000;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .live-ticker-content {
+            display: inline-block;
+            position: absolute;
+            will-change: transform;
+            font-weight: bold;
+            font-size: 16px;
+            /* Animation එක 20 තත්පරයකට වරක් ක්‍රියාත්මක වන සේ සකසා ඇත */
+            animation: tickerAnimation 15s linear infinite;
+            animation-play-state: paused; /* මුලින් නවතා තබා JS හරහා පාලනය කරයි */
+        }
+        @keyframes tickerAnimation {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
     </style>
 </head>
 <body class="bg-[#0b0f19] text-white font-sans min-h-screen">
@@ -115,6 +144,13 @@
 
             </div>
         </nav>
+
+        <!-- Option තීරුවට යටින් සුදු පාට තිරස් කොටුව (Live Ticker Bar) -->
+        <div class="live-ticker-bar">
+            <div id="ticker-text" class="live-ticker-content">
+                Hasindu TV සජීවී විකාශය ලඟදීම බලාපොරොත්තු වන්න &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hasindu TV live broadcast coming soon
+            </div>
+        </div>
 
         <!-- ප්‍රධාන කොටස් (Main Container Sections) -->
         <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
@@ -265,7 +301,8 @@
                 footerRights: "සියලු හිමිකම් ඇවිරිණි.",
                 watchBtn: "නරඹන්න",
                 commentPlaceholder: "ඔබේ අදහස ලියන්න...",
-                postComment: "කමෙන්ට් කරන්න"
+                postComment: "කමෙන්ට් කරන්න",
+                tickerText: "Hasindu TV සජීවී විකාශය ලඟදීම බලාපොරොත්තු වන්න &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hasindu TV live broadcast coming soon"
             },
             en: {
                 navHome: "Home",
@@ -282,9 +319,35 @@
                 footerRights: "All Rights Reserved.",
                 watchBtn: "Watch",
                 commentPlaceholder: "Write a comment...",
-                postComment: "Comment"
+                postComment: "Comment",
+                tickerText: "Hasindu TV සජීවී විකාශය ලඟදීම බලාපොරොත්තු වන්න &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Hasindu TV live broadcast coming soon"
             }
         };
+
+        // තත්පර 20 කට වරක් Ticker animation එක පාලනය කිරීමේ වැඩසටහන
+        function startTickerLoop() {
+            const ticker = document.getElementById('ticker-text');
+            if(!ticker) return;
+
+            function runTicker() {
+                ticker.style.animationPlayState = 'running';
+                // Animation එක අවසන් වීමට ගතවන කාලය (තත්පර 15)
+                setTimeout(() => {
+                    ticker.style.animationPlayState = 'paused';
+                    
+                    // ඊළඟ වාරය සඳහා තවත් තත්පර 20 ක විරාමයක් (Delay) ලබා දීම
+                    setTimeout(runTicker, 20000); 
+                }, 15000);
+            }
+
+            // මුල් වරට තත්පර 1 කින් ආරම්භ කිරීම
+            setTimeout(runTicker, 1000);
+        }
+
+        // Page load වූ පසු Ticker loop එක ක්‍රියාත්මක කිරීම
+        window.addEventListener('DOMContentLoaded', () => {
+            startTickerLoop();
+        });
 
         function selectLanguage(lang) {
             currentLang = lang;
@@ -323,6 +386,7 @@
             document.querySelector('.tele-empty-text').innerText = t.teleEmpty;
             document.querySelector('.other-empty-text').innerText = t.otherEmpty;
             document.querySelector('[data-i18n="footer-rights"]').innerText = t.footerRights;
+            document.getElementById('ticker-text').innerHTML = t.tickerText;
         }
 
         function switchTab(tab) {
@@ -527,7 +591,6 @@
                     </div>
                 `;
 
-                // මෙහි News, Teledrama සහ Other අංශ සඳහා මාතෘකාව (Title) නිවැරදිව පෙන්වීමට සකසා ඇත
                 let card = `
                     <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                         ${p.img ? `<div class="w-full bg-black/40 flex items-center justify-center overflow-hidden"><img src="${p.img}" class="w-full h-auto max-h-[300px] object-contain" alt="Post Image"></div>` : ''}

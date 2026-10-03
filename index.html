@@ -271,7 +271,7 @@
                 <div class="flex justify-between items-center border-b border-gray-800 pb-4">
                     <h2 class="text-2xl font-bold text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> <span data-i18n="nav-news">ප්‍රවෘත්ති</span></h2>
                 </div>
-                <!-- ප්‍රවෘත්ති පෝස්ට් දින අනුව වෙන් වී මෙහි පෙන්වනු ලැබේ -->
+                <!-- ප්‍රවෘත්ති පෝස්ට් දින අනුව වෙන් වී මෙහි පෙන්වනු ලැබේ (අද දවස උඩින්, ඊයේ දවස යටින්) -->
                 <div id="news-container" class="space-y-8">
                     <div class="news-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම ප්‍රවෘත්ති එකතු කර නැත.</div>
                 </div>
@@ -636,22 +636,22 @@
         function loadPosts() {
             let posts = JSON.parse(localStorage.getItem('hasindu_posts') || '[]');
             
+            // අලුත් පෝස්ට් උඩින් පෙන්වීමට සකස් කිරීම
             posts.sort((a, b) => b.id - a.id);
 
             let homeHTML = '';
             let sideHTML = '';
             let newsHTML = '';
-            let teleHTML = '';
-            let otherHTML = '';
             const t = translations[currentLang];
 
-            // ප්‍රවෘත්ති දින අනුව කාණ්ඩගත කිරීම (Group news posts by date)
+            // ප්‍රවෘත්ති දින අනුව කාණ්ඩගත කිරීම සහ අලුත් දින උඩට පැමිණෙන ලෙස සකස් කිරීම
             let newsByDate = {};
             posts.filter(p => p.section === 'news').forEach(p => {
                 let dObj = p.dateObj || { year: '2026', monthShort: 'OCT', monthFull: 'October', day: '03' };
                 let dateKey = `${dObj.year}.${dObj.monthFull}.${dObj.day}`;
                 if (!newsByDate[dateKey]) {
                     newsByDate[dateKey] = {
+                        timestamp: p.id, // අදාළ දිනයේ මුල්ම පෝස්ට් එකේ ID එක (Sort කිරීම සඳහා)
                         monthShort: dObj.monthShort,
                         fullDateStr: dateKey,
                         dayNum: dObj.day,
@@ -661,9 +661,11 @@
                 newsByDate[dateKey].items.push(p);
             });
 
-            // ප්‍රවෘත්ති කොටස සඳහා දින දර්ශන විජට් එක සමඟ පෝස්ට්ස් සැකසීම
-            if (Object.keys(newsByDate).length > 0) {
-                for (let dateKey in newsByDate) {
+            // දින අනුපිළිවෙළට (අලුත්ම දිනය උඩින්, ඊයේ දවස යටින්) sort කිරීම
+            let sortedDateKeys = Object.keys(newsByDate).sort((a, b) => newsByDate[b].timestamp - newsByDate[a].timestamp);
+
+            if (sortedDateKeys.length > 0) {
+                sortedDateKeys.forEach(dateKey => {
                     let group = newsByDate[dateKey];
                     
                     newsHTML += `
@@ -697,9 +699,9 @@
                     });
 
                     newsHTML += `</div></div>`;
-                }
+                });
             } else {
-                newsHTML = `<div class="news-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">තවම ප්‍රවෘත්ති එකතු කර නැත.</div>`;
+                newsHTML = `<div class="news-empty-text bg-gray-900 border border-gray-800 rounded-2xl p-6 text-center text-gray-500">${t.newsEmpty}</div>`;
             }
 
             posts.forEach(p => {
@@ -756,10 +758,8 @@
 
                 if(p.section === 'home') homeHTML += homeCard;
                 if(p.section === 'stream-side') sideHTML += sideCard;
-                if(p.section === 'other') otherHTML += otherHTML += card; // Fixed other section append
             });
 
-            // Corrected separate assignment for tele and other containers
             let resolvedTeleHTML = '';
             posts.filter(p => p.section === 'teledrama').forEach(p => {
                 resolvedTeleHTML += `
